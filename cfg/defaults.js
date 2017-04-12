@@ -41,6 +41,10 @@ function getDefaultModules() {
         loader: 'style-loader!css-loader!less-loader'
       },
       {
+        test:/\.json$/,
+        loader:'json-loader'
+      },
+      {
         test: /\.styl/,
         loader: 'style-loader!css-loader!stylus-loader'
       },
