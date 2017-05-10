@@ -30,8 +30,17 @@ imageDatas = ((imageDatasArr) => {
   return imageDatasArr;
 
 })(imageDatas);
-
-
+//console.log(imageDatas);
+//var imageDatasArr=[];
+//function initImagesAll(){
+//  for(var i=0;i<imageDatas.length;i++){
+//    var  singleImageData = imageDatasArr[i];
+//    singleImageData.imageURL = require('../images/' + singleImageData.fileName);
+//    imageDatasArr[i] = singleImageData;
+//  }
+//  return imageDatasArr;
+//}
+//initImagesAll();
 class AppComponent extends React.Component {
 
   constructor(props) {
