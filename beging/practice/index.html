@@ -1,70 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
     <style>
-        div,ul,li,p{
-            margin:0;
-            padding:0;
+        div,
+        ul,
+        li,
+        p {
+            margin: 0;
+            padding: 0;
         }
-        div{
-            width:100%;
-            height:1000px;
+        
+        div {
+            width: 100%;
+            height: 1000px;
         }
-        ul{
-            width:100%;
-            height:50px;
+        
+        ul {
+            width: 100%;
+            height: 50px;
         }
-        p{
+        
+        p {
             text-align: center;
-            margin:10px 0;
+            margin: 10px 0;
         }
-        input{
-            width:100px;
+        
+        input {
+            width: 100px;
         }
-        li{
+        
+        li {
             list-style: none;
-            float:left;
-            width:16.6%;
+            float: left;
+            width: 16.6%;
             text-align: center;
             line-height: 50px;
             border-bottom: 1px solid #ccc;
-            cursor:pointer;
-            height:50px;
+            cursor: pointer;
+            height: 50px;
         }
-        ul.title{
+        
+        ul.title {
             background-color: #227194;
-            color:#fff;
+            color: #fff;
             font-size: 16px;
-
         }
-        .active{
+        
+        .active {
             background-color: #00a0e8;
         }
-        ul.fun li{
-            border:1px solid #00a0e8;
-            color:#00a0e8;
-            margin:10px 50px;
+        
+        ul.fun li {
+            border: 1px solid #00a0e8;
+            color: #00a0e8;
+            margin: 10px 50px;
         }
-        ul.newPolicy li{
-            width:13%;
+        
+        ul.newPolicy li {
+            width: 13%;
         }
-        ul.newPolicy li input{
-            width:70px;
+        
+        ul.newPolicy li input {
+            width: 70px;
         }
-        ul.newPolicy li button{
+        
+        ul.newPolicy li button {
             cursor: pointer;
             background-color: #00a0e8;
-            color:#fff;
+            color: #fff;
             margin-right: 15px;
         }
-        div.search{
-            height:50px;
+        
+        div.search {
+            height: 50px;
         }
     </style>
 </head>
+
 <body>
     <div id="app">
         <p>今天我要做的是增删改查</p>
@@ -78,9 +94,9 @@
             <li><button @click="newPolicy(time,productName,policyName,insuredName,insured,premium)">确定</button><button @click="close">关闭</button></li>
         </ul>
         <div v-if="searchShow" class="search">
-                <input type="text" placeholder="请输入投被保人姓名" v-model="searchInfomation">
-                <button @click="searchInfo(searchInfomation)">确定</button>
-                <button @click="close">关闭</button>
+            <input type="text" placeholder="请输入投被保人姓名" v-model="searchInfomation">
+            <button @click="searchInfo(searchInfomation)">确定</button>
+            <button @click="close">关闭</button>
         </div>
         <ul class="title">
             <li>提交时间</li>
@@ -108,33 +124,88 @@
         </p>
     </div>
     <script>
-        var vm=new Vue({
-            el:"#app",
-            data:{
-                policyInfo:[
-                    {time:'2017-06-20',productName:'福寿保（A）',policyName:'樊胜美',"insuredName":'蒋欣',insured:"300000",premium:'60000',id:0},
-                    {time:'2017-06-19',productName:'福寿保',policyName:'Andy',"insuredName":'刘涛',insured:"40000",premium:'20000',id:1},
-                    {time:'2017-06-19',productName:'前海一号',policyName:'王柏川',"insuredName":'樊胜美',insured:"60000",premium:'50000',id:2},
-                    {time:'2017-06-18',productName:'前海一号',policyName:'小蚯蚓',"insuredName":'吴亦凡',insured:"50000",premium:'400000',id:3},
-                    {time:'2017-06-17',productName:'孝心保',policyName:'曹操',"insuredName":'诸葛亮',insured:"70000",premium:'80000',id:4},
-                    {time:'2017-06-17',productName:'倍安心',policyName:'关羽',"insuredName":'吕蒙',insured:"20000",premium:'90000',id:5},
-                    {time:'2017-06-16',productName:'理财宝',policyName:'刘备',"insuredName":'孙权',insured:"50000",premium:'1000000',id:6},
-                    {time:'2017-06-15',productName:'传家宝',policyName:'张飞',"insuredName":'吕布',insured:"20000",premium:'400000',id:7}
-                ],
-                addShow:false,
-                message:{},
-                time:'',
-                productName:'',
-                policyName:'',
-                insuredName:'',
-                insured:'',
-                premium:'',
-                searchShow:false,
-                searchInfomation:'',
-                ShowInfo:true
+        var vm = new Vue({
+            el: "#app",
+            data: {
+                policyInfo: [{
+                    time: '2017-06-20',
+                    productName: '福寿保（A）',
+                    policyName: '樊胜美',
+                    "insuredName": '蒋欣',
+                    insured: "300000",
+                    premium: '60000',
+                    id: 0
+                }, {
+                    time: '2017-06-19',
+                    productName: '福寿保',
+                    policyName: 'Andy',
+                    "insuredName": '刘涛',
+                    insured: "40000",
+                    premium: '20000',
+                    id: 1
+                }, {
+                    time: '2017-06-19',
+                    productName: '前海一号',
+                    policyName: '王柏川',
+                    "insuredName": '樊胜美',
+                    insured: "60000",
+                    premium: '50000',
+                    id: 2
+                }, {
+                    time: '2017-06-18',
+                    productName: '前海一号',
+                    policyName: '小蚯蚓',
+                    "insuredName": '吴亦凡',
+                    insured: "50000",
+                    premium: '400000',
+                    id: 3
+                }, {
+                    time: '2017-06-17',
+                    productName: '孝心保',
+                    policyName: '曹操',
+                    "insuredName": '诸葛亮',
+                    insured: "70000",
+                    premium: '80000',
+                    id: 4
+                }, {
+                    time: '2017-06-17',
+                    productName: '倍安心',
+                    policyName: '关羽',
+                    "insuredName": '吕蒙',
+                    insured: "20000",
+                    premium: '90000',
+                    id: 5
+                }, {
+                    time: '2017-06-16',
+                    productName: '理财宝',
+                    policyName: '刘备',
+                    "insuredName": '孙权',
+                    insured: "50000",
+                    premium: '1000000',
+                    id: 6
+                }, {
+                    time: '2017-06-15',
+                    productName: '传家宝',
+                    policyName: '张飞',
+                    "insuredName": '吕布',
+                    insured: "20000",
+                    premium: '400000',
+                    id: 7
+                }],
+                addShow: false,
+                message: {},
+                time: '',
+                productName: '',
+                policyName: '',
+                insuredName: '',
+                insured: '',
+                premium: '',
+                searchShow: false,
+                searchInfomation: '',
+                ShowInfo: true
             },
             methods: {
-                choosePolicy: function (x, item) {
+                choosePolicy: function(x, item) {
                     //点那一个给哪一个选中背景颜色
                     var policy = this.policyInfo;
                     for (var i = 0; i < policy.length; i++) {
@@ -148,7 +219,7 @@
                     }
                 },
                 //删除
-                del: function () {
+                del: function() {
                     for (var i = 0; i < this.policyInfo.length; i++) {
                         if (this.policyInfo[i].isDelete) {
                             this.policyInfo.splice(i, 1)
@@ -156,27 +227,28 @@
                     }
                 },
                 //确定
-                add:function(){
+                add: function() {
                     this.addShow = true;
                 },
                 //关闭
-                close:function(){
-                    this.addShow= false;
-                    this.searchShow=false;
+                close: function() {
+                    this.addShow = false;
+                    this.searchShow = false;
                 },
                 //新增.
-                newPolicy: function (time,productName,policyName,insuredName,insured,premium) {
+                newPolicy: function(time, productName, policyName, insuredName, insured, premium) {
                     //如果是修改的
-                     for(var i = 0; i < this.policyInfo.length; i++) {
+                    for (var i = 0; i < this.policyInfo.length; i++) {
                         if (this.policyInfo[i].isDelete) {
-                            this.policyInfo[i].time=time;
-                            this.policyInfo[i].productName=productName;
-                            this.policyInfo[i].policyName=policyName;
-                            this.policyInfo[i].insuredName=insuredName;
-                            this.policyInfo[i].insured=insured;
-                            this.policyInfo[i].premium=premium;
+                            this.policyInfo[i].time = time;
+                            this.policyInfo[i].productName = productName;
+                            this.policyInfo[i].policyName = policyName;
+                            this.policyInfo[i].insuredName = insuredName;
+                            this.policyInfo[i].insured = insured;
+                            this.policyInfo[i].premium = premium;
                             return;
                         }
+
                     }
                     this.policyInfo.push({
                         time: time,
@@ -189,35 +261,35 @@
                     this.close();
                 },
                 //查询
-                search:function(){
-                    this.searchShow=true;
+                search: function() {
+                    this.searchShow = true;
                 },
-                searchInfo:function(info){
-                    for(var x=0;x<this.policyInfo.length;x++){
-                        var signPolicyInfo=this.policyInfo[x].policyName;
-                        var signInsuredInfo=this.policyInfo[x].insuredName;
-                        if(signInsuredInfo == info || signPolicyInfo == info){
-                            this.policyInfo=this.policyInfo.slice(x,x+1);
+                searchInfo: function(info) {
+                    for (var x = 0; x < this.policyInfo.length; x++) {
+                        var signPolicyInfo = this.policyInfo[x].policyName;
+                        var signInsuredInfo = this.policyInfo[x].insuredName;
+                        if (signInsuredInfo == info || signPolicyInfo == info) {
+                            this.policyInfo = this.policyInfo.slice(x, x + 1);
                         }
                         //模糊查询
-                       if(signPolicyInfo.indexOf(info) >= 0 || signInsuredInfo.indexOf(info) >= 0){
-                           console.log("进来了");
-                           this.policyInfo=this.policyInfo.slice(x,x+1);
-                       }
+                        if (signPolicyInfo.indexOf(info) >= 0 || signInsuredInfo.indexOf(info) >= 0) {
+                            console.log("进来了");
+                            this.policyInfo = this.policyInfo.slice(x, x + 1);
+                        }
                     }
 
                 },
                 //修改
-                modify:function(){
-                    for(var i = 0; i < this.policyInfo.length; i++){
+                modify: function() {
+                    for (var i = 0; i < this.policyInfo.length; i++) {
                         if (this.policyInfo[i].isDelete) {
-                            this.addShow=true;
-                            this.time=this.policyInfo[i].time;
-                            this.productName=this.policyInfo[i].productName;
-                            this.policyName=this.policyInfo[i].policyName;
-                            this.insuredName=this.policyInfo[i].insuredName;
-                            this.insured=this.policyInfo[i].insured;
-                            this.premium=this.policyInfo[i].premium;
+                            this.addShow = true;
+                            this.time = this.policyInfo[i].time;
+                            this.productName = this.policyInfo[i].productName;
+                            this.policyName = this.policyInfo[i].policyName;
+                            this.insuredName = this.policyInfo[i].insuredName;
+                            this.insured = this.policyInfo[i].insured;
+                            this.premium = this.policyInfo[i].premium;
                         }
                     }
                 }
@@ -225,4 +297,5 @@
         })
     </script>
 </body>
+
 </html>
