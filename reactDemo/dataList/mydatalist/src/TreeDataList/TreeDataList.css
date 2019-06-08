@@ -20,6 +20,52 @@ body {
     width: 100%;
 }
 
-em {
-    margin-right: 10px;
+em,
+.check,
+.unSelect {
+    cursor: pointer;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.check,
+.unSelect,
+i,
+.falses {
+    background: url('../images/checkbox.jpg') no-repeat;
+    background-position: -368px -140px;
+    transform: scale(0.5);
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+}
+
+.select,
+.all {
+    background: url('../images/checkbox.jpg') no-repeat;
+    background-position: -420px -140px;
+    transform: scale(0.5);
+    width: 40px;
+    height: 40px;
+    display: inline-block
+}
+
+.mid {
+    background: url('../images/checkbox.jpg') no-repeat;
+    background-position: -245px -140px;
+    transform: scale(0.5);
+    width: 40px;
+    height: 40px;
+    display: inline-block
+}
+
+em.open {
+    background: url(/static/media/icons.5859e577.png) no-repeat;
+    background-position: -68px -161px;
+}
+
+em.fold {
+    background: url(/static/media/icons.5859e577.png) no-repeat;
+    background-position: -91px -161px;
 }

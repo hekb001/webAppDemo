@@ -38,13 +38,59 @@ class TreeDataList extends Component {
         })
     }
     foldOrOpenItem(item) { 
+        console.log(item);
         item.fold = !item.fold;
         this.setState({})
+    }
+    checkChild(item) { 
+        
+        if (item.check == 'mid' || item.check == 'falses') {
+            item.check = 'all';
+            if(item.children && item.children.length > 0){
+            item.children.map((item1) => { 
+                item1.check = true ;
+            })
+        }
+        } else { 
+            item.check = 'falses'
+            if(item.children && item.children.length > 0){
+            item.children.map((item1) => { 
+                item1.check = false ;
+            })
+        }
+        }
+        
+         this.setState({})
+    }
+    checkItem(item, index) { 
+        console.log(index);
+        item.check = !item.check;
+        var count = 0;
+        let data = this.state.data[index];
+        if(data.children && data.children.length > 0){
+            data.children.map((item1) => { 
+                if (item1.check) { 
+                    count += 1;
+                }
+            })
+            if (count > 0 && count < data.children.length) { 
+                console.log('mid')
+                this.state.data[index].check = 'mid'
+            }
+            if (count > 0 && count == data.children.length) { 
+                 this.state.data[index].check = 'all'
+            }
+            if (count == 0) { 
+                 this.state.data[index].check = 'falses'
+            }
+        }
+         this.setState({})
     }
     componentDidMount() {
         
     }
     render() {
+        console.log(this.state.data);
         let dataList  = this.state.data;
         return (<div className="content">
             {dataList && dataList.length > 0 &&
@@ -52,15 +98,18 @@ class TreeDataList extends Component {
                 return (<ul key={index}>
                     <li>
                         <span>
-                            <em className={item.fold ? 'fold' : 'open'} onClick={this.foldOrOpenItem.bind(this,item)}>点击菜单</em>
+                            <i  className={item.check}  onClick={this.checkChild.bind(this,item)}></i>
+                            <em className={item.fold ? 'fold' : 'open'} onClick={this.foldOrOpenItem.bind(this,item)}></em>
                             {item.name}
+                         
                         </span> 
                         {item.children && item.children.length > 0 &&
-                            <ul className="item-children">
+                            <ul className="item-children" style={{display:item.fold ? 'none':'block'}}>
                                 {
                                  item.children.map((item1,index1) => { 
                                     return (
                                         <li key={index1}>
+                                            <i className={item1.check ? 'select' : 'unSelect'} onClick={this.checkItem.bind(this,item1,index)}></i>
                                             <span>{item1.name}</span>
                                         </li>)
                                     })
