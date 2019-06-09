@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>比较js 中的break；continue,return</title>
+    <style>
+        h2 {
+            color: red
+        }
+        
+        h3 {
+            color: blue;
+        }
+        
+        h4 {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>比较js 中的break,continue,return</h1>
+    <h2>1.相同之处是，执行到该处的时候，语句都会停止</h2>
+    <h3>
+        1.break;停止当前语句，立即跳出语句，进入下一个语句；
+    </h3>
+    <h3>2.continue;停止当前语句，并从头部开始执行；</h3>
+    <h3>3.return：停止函数的执行，返回结果；</h3>
+    <h3>4.执行的语句环境不一样，break跟continue是在switch 跟 for／while循环中用的比较多， return一般用在函数体内，当然return 也可以用在for循环中；</h3>
+
+    <h4>
+        //break; for(var i = 0;i
+        <10;i++){ if(i===6 ){ break; } console.log(i); } </h4>
+            <h4>//continue;for(var i = 0;i
+                <10;i++){ if(i===6 ){ continue; } console.log(i);//0,1,2,3,4,5,7,8,9 }</h4>
+</body>
+
+</html>
