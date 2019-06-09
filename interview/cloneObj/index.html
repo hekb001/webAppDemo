@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js深度克隆</title>
+</head>
+
+<body>
+    <div>
+        <div class="content">
+
+        </div>
+        <button class="clone">深度克隆</button>
+        <div class="clone-content">
+
+        </div>
+    </div>
+</body>
+<script>
+    (function() {
+        var objs = {
+            key: 1,
+            name: 'myName',
+            data: [
+                '001', '002', '003'
+            ],
+            date: new Date(),
+            isTrue: true,
+            val: undefined,
+            obj: {
+                key1: '01',
+                name1: 'myName01',
+                data: ['01', '02', '03', undefined],
+                value: undefined
+            }
+        }
+        let contentEl = document.getElementsByClassName('content')[0];
+        let cloneContentEl = document.getElementsByClassName('clone-content')[0];
+        contentEl.innerHTML = JSON.stringify(objs);
+        let buttonEl = document.getElementsByClassName('clone')[0];
+        buttonEl.addEventListener('click', (event) => {
+            console.log('点击克隆')
+            let cloneObjData = cloneObj(objs);
+            cloneContentEl.innerHTML = JSON.stringify(cloneObjData);
+            cloneContentEl.style.color = 'red';
+            alert('深度克隆出来的值为' + JSON.stringify(cloneObjData))
+        }, false)
+
+        function cloneObj(data) {
+            let result;
+            switch (Object.prototype.toString.call(data)) {
+                case "[object Number]":
+                    result = (typeof data === "object" ? new Number(data) : parseInt(data).toString());
+                    break;
+                case "[object String]":
+                    result = (typeof data === 'object' ? new String(data) : data.toString());
+                    // 一定要用break 中断，下面的result 用来接收该值
+                    break;
+                case "[object Boolean]":
+                    result = (typeof data === "Boolean" ? new Boolean(data) : data);
+                    break;
+                case "[object Date]":
+                    result = new Date(data);
+                    break;
+                case "[object Array]":
+                    var temp = new Array();
+                    for (let i = 0, m; m = data[i]; i++) {
+                        temp[i] = cloneObj(m);
+                    }
+                    result = temp; //接受遍历结束过后返回的值给到 result
+                    console.log('resultArray.....' + result)
+                    delete temp;
+                    break;
+                case "[object Object]":
+                    let temps = {};
+                    // 遍历对象的key 返回的值依次放入数组中
+                    let keys = Object.keys(data);
+                    for (let i = 0, a; a = keys[i]; i++) {
+                        temps[a] = cloneObj(data[a])
+                    }
+                    console.log('temps' + JSON.stringify(temps));
+                    result = temps;
+                    delete temps;
+                    delete keys;
+                    break;
+                default:
+                    break;
+            }
+            // 用来接受每一次返回来的值
+            return result;
+        }
+    })()
+</script>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css 垂直居中</title>
+</head>
+<style>
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+    }
+    
+    .content {
+        /************************1⃣️1⃣️start流式布局**************************/
+        width: 100%;
+        height: 100%;
+        display: flex;
+        /*竖直方向*/
+        align-items: center;
+        /*水平方向*/
+        justify-content: center;
+        /************************1⃣️1⃣️end流式布局**************************/
+        /************************2⃣️2⃣️start相对定位绝对定位**************************/
+        /*width: 100%;
+        height: 100vh;
+        border: 1px solid #fff;
+        position: relative;*/
+        /************************2⃣️2⃣️end相对定位绝对定位**************************/
+        /************************3⃣️3⃣️start表格居中**************************/
+        /*width: 100%;
+        height: 100%;
+        display: table;
+        text-align: center
+        /************************3⃣️3⃣️end表格居中**************************/
+    }
+    
+    .inner-content {
+        /************************1⃣️1⃣️start流式布局***********************/
+        width: 100px;
+        height: 100px;
+        border: 1px solid #ddd;
+        /************************1⃣️1⃣️end流式布局**************************/
+        /************************2⃣️2⃣️start相对定位绝对定位**************************/
+        /*width: 100px;
+        height: 100px;
+        border: 1px solid #ddd;
+        left: 50%;
+        top: 50%;
+        position: absolute;
+        text-align: center;
+        transform: translate(-50%, -50%);*/
+        /************************2⃣️2⃣️end相对定位绝对定位**************************/
+        /************************3⃣️3⃣️start表格居中**************************/
+        /*width: 100px;
+        height: 100px;
+        border: 1px solid #ddd;
+        display: table-cell;
+        vertical-align: middle;
+        /************************3⃣️3⃣️end表格居中**************************/
+    }
+</style>
+
+<body>
+    <div class="content">
+        <div class="inner-content">
+            我是要居中显示的
+        </div>
+    </div>
+</body>
+
+</html>

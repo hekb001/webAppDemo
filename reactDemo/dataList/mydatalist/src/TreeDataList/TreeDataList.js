@@ -97,7 +97,7 @@ class TreeDataList extends Component {
                 dataList.map((item,index) => { 
                 return (<ul key={index}>
                     <li>
-                        <span>
+                        <span> 
                             <i  className={item.check}  onClick={this.checkChild.bind(this,item)}></i>
                             <em className={item.fold ? 'fold' : 'open'} onClick={this.foldOrOpenItem.bind(this,item)}></em>
                             {item.name}
