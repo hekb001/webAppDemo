@@ -65,12 +65,22 @@
     console.log(childObj1.m1())
     console.log(obj1.m1());
     //********************************函数的继承 通过prototype
-    function P() {}
+    function P() {
+        
+    }
     P.prototype.say = function() {
         return 'p say'
     }
-    var p = new P();
-    console.log(p.say());
+
+    function C() {
+
+    }
+
+    C.prototype = new P();
+
+    let b = new C();
+    console.log(b.__proto__)//p
+    console.log(b.say()); //p say
     //********************************使用call 实现继承，调用的时候改变this指向
     function Parent(name) {
         this.name = name;
