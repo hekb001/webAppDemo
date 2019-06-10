@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js原型原型链继承</title>
+    <style>
+        h2 {
+            color: green;
+        }
+        
+        h3 {
+            color: blue
+        }
+    </style>
+</head>
+<h2>相同点</h2>
+<h3>1.子类都可以实现对父类的继承。</h3>
+<h2>不同点</h2>
+<h3>1.使用prototype继承，子对象可以调用原型链上所存在的属性和方法。</h3>
+<h3>2.使用call继承，只能继承父对象的属性跟方法，父对象原型链上的方法没有办法继承。</h3>
+<h2>补充</h2>
+<h3>1.hasOwnProperty是用来检测对象自身是否包含某个属性的方法，原型链上有的方法不算自身拥有的</h3>
+<h3>2.getPropertyOf获取原型链上的方法，属性</h3>
+
+<body>
+
+</body>
+<script>
+    //*****************对象之间实现继承
+    var parentObj = {
+            a: 1,
+            b: 3,
+            m: function() {
+                return this.a + 2
+            }
+        }
+        // 创建一个childObj的对象，继承自parentObj
+    var childObj = Object.create(parentObj);
+    childObj.a = 2; //childObj自己定义的a
+    // 创建一个obj的对象，继承自childObj
+    var obj = Object.create(childObj);
+    obj.a = 3;
+    console.log(childObj.m()) //4
+    console.log(obj.m()) //5
+    console.log(obj.hasOwnProperty('a')) //true 对象本身有该属性
+    console.log(obj.hasOwnProperty('b')) //false 对象本身有，原型链上没有
+    var parentObj1 = {
+        a1: 1,
+        b1: 3,
+        m1: function() {
+            return this.a1 + 2
+        }
+    }
+    var childObj1 = new Object();
+    var obj1 = new Object();
+    childObj1.a1 = 2;
+    obj1.a1 = 3;
+    //childObj1的原型指向parentObj1
+    childObj1.__proto__ = parentObj1;
+    //obj1的原型指向childObj1
+    obj1.__proto__ = childObj1;
+    console.log(childObj1.m1())
+    console.log(obj1.m1());
+    //********************************函数的继承 通过prototype
+    function P() {}
+    P.prototype.say = function() {
+        return 'p say'
+    }
+    var p = new P();
+    console.log(p.say());
+    //********************************使用call 实现继承，调用的时候改变this指向
+    function Parent(name) {
+        this.name = name;
+        this.sayHello = function() {
+            return this.name
+        }
+    }
+    Parent.prototype.parentSay = function() {
+        return 'hello';
+    }
+
+    function Child() {
+        this.say = function() {
+            Parent.call(this, 'hekabing')
+        }
+    }
+    var child = new Child();
+    child.say();
+    //child 调用parent 的方法
+    console.log(child.sayHello()); //hekabing
+    console.log(child.parentSay()); //报错，没有找到该方法
+    //
+</script>
+
+</html>
