@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js闭包深度剖析</title>
+    <style>
+        h2 {
+            color: blue;
+        }
+        
+        h3 {
+            color: green
+        }
+    </style>
+</head>
+
+<body>
+    <h2>1.简述闭包</h2>
+    <h3>1.闭包的结构：函数内部定义一个函数，简称外部函数,内部函数。</h3>
+    <h3>2.什么是闭包：外层函数内的局部变量被内层函数引用，这一过程形成了闭包。</h3>
+    <h3>3.闭包的产生与解决方法：外层调用者读取函数内部的局部变量，根据javaScript作用域原则，子函数可以通过自己内部作用域 并一层层往上查找自己内部定义的变量，反之则不行，为了解决这一方法，定义一个return 返回一个匿名函数（内部函数），函数内执行的 表达式可以引用外部的局部变量，将值返回给调用者。
+    </h3>
+    <h2>2.闭包的作用及实践意义</h2>
+    <h3>1.闭包可以用来保护自己内部受保存的变量，不受全局干扰</h3>
+    <h3>2.闭包可以用来缓存某个常用到的值，下一次调用直接取计算好的值</h3>
+    <h3>3.闭包可以用来实现自己的单例，其他单例在使用的时候不干扰原先的单例，互不干扰，互相独立</h3>
+    <h2>3.闭包的缺陷</h2>
+    <h3>1.外层函数内部变量一直在被引用，无法释放，无法被javascript资源中心回收</h3>
+    <h3>2.大量的使用外包，可能会引起内存泄漏</h3>
+    <h3>3.父部函数内定义的变量，外层函数调用的时候切记小心，该变量会引起内部调用的结果</h3>
+    <h2>5.闭包的优化方案</h2>
+</body>
+<script>
+    //闭包的产生？
+    // function outer() {
+    //     var a = 5;
+    // }
+    //获取不到a的值，因为a是函数outer内定义的局部变量（注意一定要用var声明；否则相当于声明了一个全局变量）；
+    // console.log(a) 
+    //想读取a?
+    function outer() {
+        var a = 5;
+        return function() {
+            a++;
+            console.log(a);
+        }
+    }
+    var instance = outer();
+    instance(); //6
+    instance(); //7 a一直被内部引用，无法释放，再次调用，会查找上一次记录的值
+    var newInstance = outer();
+    newInstance(); //6 闭包的实例互补干扰，可以理解为重新引用了一次，并实现了自己的单例
+    newInstance(); //7
+    //用闭包保存上一次记录的值，作为结果给到下次调用
+    function parent(domain) {
+        //写法1⃣️
+        //     return {
+        //         get: function(api) {
+        //             return domain + api
+        //         },
+        //         post: function(api) {
+        //             return domain + api
+        //         }
+        //     }
+        // }
+    }
+
+    function parent(domain) {
+        //写法2⃣️
+        function get(api) {
+            return domain + api
+        }
+
+        function post(api) {
+            return domain + api
+        }
+        return {get,
+            post
+        }
+    }
+    var ins = parent('https://3ms.huawei.com');
+    var getUrl = ins.get('/km/blog/get.html');
+    var postUrl = ins.post('/km/blog/post.html')
+    console.log(getUrl);
+    console.log(postUrl);
+    //实现一个闭包的调用实例，互不干扰
+    function out() {
+        var newName = 'default';
+
+        function getter() {
+            return newName;
+        }
+
+        function setter(name) {
+            newName = name
+        }
+        return {
+            getter,
+            setter
+        }
+    }
+    var insOut = out();
+    var name = insOut.getter();
+    console.log(name); //'defalut'
+    insOut.setter('liliwen');
+    var newName = insOut.getter();
+    console.log(newName); //'liliwen'
+
+    var jake = out();
+    jake.setter('jeck');
+    console.log(jake.getter()) //'jake'
+</script>
+
+</html>

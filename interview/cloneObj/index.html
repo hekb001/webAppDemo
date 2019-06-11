@@ -7,8 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>js深度克隆</title>
 </head>
+<style>
+    h3 {
+        color: green;
+    }
+</style>
 
 <body>
+    <h3>使用JSONString() 与JSONParse()克隆的时候会丢失undefined</h3>
     <div>
         <div class="content">
 
@@ -34,7 +40,7 @@
                 key1: '01',
                 name1: 'myName01',
                 data: ['01', '02', '03', undefined],
-                value: undefined
+                value: null
             }
         }
         let contentEl = document.getElementsByClassName('content')[0];
@@ -44,9 +50,11 @@
         buttonEl.addEventListener('click', (event) => {
             console.log('点击克隆')
             let cloneObjData = cloneObj(objs);
-            cloneContentEl.innerHTML = JSON.stringify(cloneObjData);
+            cloneContentEl.innerHTML = String(cloneObjData);
             cloneContentEl.style.color = 'red';
-            alert('深度克隆出来的值为' + JSON.stringify(cloneObjData))
+            alert('深度克隆出来的值看控制台' + String(cloneObjData));
+            console.log(cloneObjData)
+
         }, false)
 
         function cloneObj(data) {
@@ -62,6 +70,13 @@
                 case "[object Boolean]":
                     result = (typeof data === "Boolean" ? new Boolean(data) : data);
                     break;
+                case "[object Undefined]":
+                    console.log('undefind');
+                    result = undefined;
+                    break;
+                case "[object Null]":
+                    result = null;
+                    break;
                 case "[object Date]":
                     result = new Date(data);
                     break;
@@ -76,12 +91,13 @@
                     break;
                 case "[object Object]":
                     let temps = {};
-                    // 遍历对象的key 返回的值依次放入数组中
+                    // 遍历对象的key 返回的值依次存入对象中
                     let keys = Object.keys(data);
                     for (let i = 0, a; a = keys[i]; i++) {
                         temps[a] = cloneObj(data[a])
+                        console.log(temps);
                     }
-                    console.log('temps' + JSON.stringify(temps));
+
                     result = temps;
                     delete temps;
                     delete keys;
