@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js高阶函数</title>
+</head>
+<style>
+    h2 {
+        color: green;
+    }
+</style>
+
+<body>
+    <h2>高阶函数建立在闭包的基础之上，将函数作为参数调用，或者将函数作为返回结果</h2>
+    <h2>函数柯里化建立在闭包的基础上，实现部分求职</h2>
+</body>
+<script>
+    // *************实现一个高阶函数，实现数组元素平方
+    function square(i) {
+        return i * i
+    }
+
+    function map(handel, list) {
+        return list.map(handel)
+    }
+    //定义一个柯里化函数
+    function curry(fn) {
+        var argus = Array.prototype.slice.call(arguments, 1);
+        return function() {
+            var _argus = Array.prototype.slice.call(arguments);
+            var newArgus = argus.concat(_argus);
+            return fn.apply(null, newArgus)
+        }
+    }
+    var curryFn = curry(map, square);
+    var newData = curryFn([1, 2, 3, 5, 6]);
+    console.log(newData);
+
+    /**********使用高阶函数实现一个迭代器*****************************/
+    function makeIteretor(arr) {
+        var nextIndex = 0;
+        return {
+            next: function() {
+                return nextIndex < arr.length ? {
+                    value: arr[nextIndex++],
+                    done: false
+                } : {
+                    value: undefined,
+                    done: true
+                }
+            }
+        }
+    }
+    var iterator = makeIteretor([1, 3, 4]);
+    console.log(iterator.next());
+    console.log(iterator.next());
+    console.log(iterator.next());
+    console.log(iterator.next());
+    var newIterator = makeIteretor([1, 3, 4]);
+    console.log(newIterator.next());
+    console.log(newIterator.next());
+    console.log(newIterator.next());
+</script>
+
+</html>

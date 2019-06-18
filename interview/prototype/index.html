@@ -16,9 +16,9 @@
         }
     </style>
 </head>
-<h2>相同点</h2>
+<h2>call继承与prototype继承相同点</h2>
 <h3>1.子类都可以实现对父类的继承。</h3>
-<h2>不同点</h2>
+<h2>call继承与prototype继承不同点</h2>
 <h3>1.使用prototype继承，子对象可以调用原型链上所存在的属性和方法。</h3>
 <h3>2.使用call继承，只能继承父对象的属性跟方法，父对象原型链上的方法没有办法继承。</h3>
 <h2>补充</h2>
@@ -66,7 +66,7 @@
     console.log(obj1.m1());
     //********************************函数的继承 通过prototype
     function P() {
-        
+
     }
     P.prototype.say = function() {
         return 'p say'
@@ -79,7 +79,7 @@
     C.prototype = new P();
 
     let b = new C();
-    console.log(b.__proto__)//p
+    console.log(b.__proto__) //p
     console.log(b.say()); //p say
     //********************************使用call 实现继承，调用的时候改变this指向
     function Parent(name) {
