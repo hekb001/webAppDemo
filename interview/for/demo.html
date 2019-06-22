@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>es6对象的遍历，数组的遍历</title>
+</head>
+<style>
+    h2:nth-child(2n+1) {
+        color: blue;
+    }
+    
+    h2:nth-child(2n) {
+        color: green;
+    }
+</style>
+
+<body>
+    <h2>
+        Object.keys(obj);遍历当前的对象，返回数组，，value 为当前对象的key值
+    </h2>
+    <h2>
+        Object.value(obj);遍历当前的对象， 返回数组，value为对象的value值
+    </h2>
+    <h2>
+        Object.entries(obj);遍历当前的对象， 返回数组，将原对象的每一组key 跟value 放入一个个数组
+    </h2>
+    <h2>
+        arr.keys()返回的是一个数组迭代；用of遍历，输出当前数组的索引； </h2>
+    <h2>
+        arr.values();用of遍历，输出当前数组索引位置对应的值
+    </h2>
+    <h2>
+        arr.entries();用of遍历，输出索引跟健值
+    </h2>
+</body>
+<script>
+    var obj = {
+        a: 1,
+        b: 2,
+        c: [12, 34, {
+            c: 5
+        }]
+    }
+    console.log(Object.keys(obj)); //["a", "b", "c"]
+    console.log(Object.values(obj)); //[1,2,[12,34,{"c":5}]]
+    console.log(Object.entries(obj)); //[["a",1],["b",2],["c",[12,34,{"c":5}]]]
+    var arr = ['1', '2', '3', {
+        a: 1,
+        b: {
+            d: 1
+        }
+    }];
+    for (let key of arr.keys()) {
+        console.log(key);
+    }
+    for (let key of arr.values()) {
+        console.log(key);
+    }
+    for (let [key, value] of arr.entries()) {
+        console.log(key, value)
+    }
+</script>
+
+</html>
