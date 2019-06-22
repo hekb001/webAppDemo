@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js实现call与prototype组合继承</title>
+</head>
+<style>
+    h2:nth-child(2n+1) {
+        color: green;
+    }
+    
+    h2:nth-child(2n) {
+        color: blue;
+    }
+</style>
+
+<body>
+    <h2>1.使用prototype可以实现子类对父类的继承，可以继承父类原型的方法；<br/></h2>
+    <h2> 2.使用call可以实现子类对父类实现继承，可以像父类传递参数，但是父类原型上的属性与方法，子类无法继承；</h2>
+    <h2>3.使用call与prototype组合实现对父类的继承，即可以继承父类以及父类原型的属性跟方法，还可以向父类传递参数；</h2>
+    <h2>4.在使用组合继承的时候，切记不要使用child.prototype = parent.prototype;因为是引用关系，会将子类原型定义的方法加载到父类上，这样的情况是不允许的；</h2>
+    <h2> 5。Object.getPrototypeOf() 跟__proto__的原理一样获取对象的原型；Object.setPrototype与prototype都是获取当前对象的原型</h2>
+</body>
+<script>
+    function Parent(name) {
+        this.name = name;
+        this.speak = function() {
+            return 'parent say ' + this.name;
+        }
+    }
+    Parent.prototype = {
+        say: function() {
+            return this.name + ' is very good'
+        }
+    }
+
+    function Child(name) {
+        this.name = name;
+        Parent.call(this, this.name);
+    }
+    // Child.prototype = Parent.prototype;//参考第四点
+    function F() { //定义一个新的类F
+
+    }
+    F.prototype = Parent.prototype; //避开直接饮用，F继承Parent 的say方法
+    Child.prototype = new F(); //Child继承F来自于Parent 的say 方法 Child-F-Parent-Parent.say
+    Child.prototype.childSay = function() {
+        return this.name + ' child say'
+    }
+    var child = new Child('hekabing');
+    console.log(child.speak()); //parent say hekabing
+    console.log(child.say()); //报错
+    console.log(Parent.prototype); //只允许有say方法，保持parent 的干净无污染
+    console.log(child.childSay()); //hekabing child say
+    console.log(Object.getPrototypeOf(child));
+    console.log(child.__proto__);
+
+    /*******对象的继承**********/
+    var obj = {
+        a: 1
+    }
+    var obj2 = {
+            b: 2,
+            fun: function() {
+                return this.b
+            }
+        }
+        // Object.setPrototypeOf(obj, obj2); //es6的写法
+        // obj.__proto__ = obj2;//es6的写法
+    obj = Object.create(obj2); //es5的写法
+    console.log(obj.b);
+    console.log(obj.fun());
+    console.log(Object.getPrototypeOf(obj)) //获取obj的原型
+</script>
+
+</html>
