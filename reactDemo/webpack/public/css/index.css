@@ -1,0 +1,7 @@
+h2:nth-child(2n) {
+    color: blue;
+}
+
+h2:nth-child(2n+1) {
+    color: green;
+}

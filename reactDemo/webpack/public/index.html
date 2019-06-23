@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>使用wepack</title>
+    <link rel="stylesheet" href="css/index.css">
+    <script src="js/vconsole.min.js"></script>
+    <script src="http://localhost:8080/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <h2>1.服务端渲染的项目</h2>
+    <h2>
+        2.使用node 模块express 搭建服务
+    </h2>
+    <h2>
+        3.使用vconsole打印输出
+    </h2>
+    <h2>
+        4.使用websokect实现客户端长连接，通信
+    </h2>
+    <h2>
+        5.执行npm build 可简单打包，暂时没处理es6模块，npm start 可启动项目，自动打开浏览器
+    </h2>
+</body>
+<script>
+    var vConsole = new VConsole();
+    console.log('hello world')
+    var socket = io.connect('http://localhost:8080');
+    socket.on('connect', function() {
+        console.log('客户端已经与服务端建立起了连接')
+    })
+    var data = {
+        name: 'liliwen'
+    }
+    socket.emit('message', data); //向服务端发送数据
+    socket.on('sendDataToClient', function(data) {
+        console.log('接收来自服务端的数据' + data.name);
+    })
+    socket.on('disconnect', function() {
+        console.log('客户端已经关闭连接')
+    })
+</script>
+
+</html>
