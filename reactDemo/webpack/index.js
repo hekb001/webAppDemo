@@ -9,6 +9,10 @@ var io = require('socket.io');
 
 app.use(bodyParser.json());
 app.use(express.static("public")); //读取public下默认的index.html
+app.get('/', (req, res) => {
+    var Path = path.resolve(__dirname + '/public/index.html')
+    res.sendfile(listPath);
+})
 app.get('/list', (req, res) => {
     var listPath = path.resolve(__dirname + '/public/list.html')
     res.sendfile(listPath);
