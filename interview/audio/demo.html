@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自定义音频播放</title>
+    <script src="./hls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .audio {
+            display: flex;
+            width: 60%;
+            margin: auto;
+            height: 60px;
+        }
+        
+        .turn {
+            flex: 1;
+            text-align: center;
+            line-height: 55px;
+            cursor: pointer;
+        }
+        
+        .start,
+        .end {
+            flex: 1;
+            text-align: center;
+            line-height: 55px;
+            display: inline-block;
+            width: 80px;
+        }
+        
+        .start span,
+        .end span {
+            cursor: pointer;
+        }
+        
+        .scroll {
+            flex: 7;
+            height: 5px;
+            margin-top: 24px;
+            background: #ccc;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .bar {
+            width: 10px;
+            height: 20px;
+            background: #369;
+            position: absolute;
+            top: -7px;
+            left: 0;
+            cursor: pointer;
+        }
+        
+        .mask {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: #369;
+            width: 0;
+            height: 5px;
+        }
+        
+        p {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="audio">
+        <audio id="audio" controls loop="false" width="100%" autoplay=false></audio>
+    </div>
+    <div class="audio">
+        <div class="turn">
+            <span class="turn-btn" id="turn-btn">
+                开始
+            </span>
+        </div>
+        <div class="start">
+
+        </div>
+        <div class="scroll" id="scroll">
+            <div class="bar" id="bar">
+
+            </div>
+            <div class="mask" id="mask"></div>
+        </div>
+        <div class="end">
+
+        </div>
+    </div>
+    <p></p>
+</body>
+<script>
+    var audio = document.getElementById('audio');
+    audio.style.display = 'none'; //隐藏默认视频标签;
+    if (Hls.isSupported()) {
+        var hls = new Hls();
+        hls.loadSource('https://yunqivedio.alicdn.com/2017yq/v2/0x0/96d79d3f5400514a6883869399708e11/96d79d3f5400514a6883869399708e11.m3u8');
+        hls.attachMedia(audio);
+        hls.on(Hls.Events.MANIFEST_PARSED, function() {
+            // audio.play();
+        });
+    } else if (audio.canPlayType('application/vnd.apple.mpegurl')) {
+        audio.src = 'https://video-dev.github.io/streams/x36xhzz/x36xhzz.m3u8';
+        audio.addEventListener('loadedmetadata', function() {
+            // audio.play();
+        });
+    }
+    var scroll = document.getElementById('scroll');
+    var startTime = document.getElementsByClassName('start')[0];
+    var endTime = document.getElementsByClassName('end')[0];
+    var bar = document.getElementById('bar');
+    var mask = document.getElementById('mask');
+    var ptxt = document.getElementsByTagName('p')[0];
+    var turnBtn = document.getElementById('turn-btn');
+    var barleft = 0;
+    var curTime = 0;
+    var playFlag = false; //默认暂停
+    var timer; //定义全局定时器
+    var totalTime;
+    //获取视频时长
+    audio.onloadedmetadata = function() {
+            totalTime = hls.media.duration * 1000;
+            endTime.innerHTML = formateTime(totalTime);
+            audio.pause();
+        }
+        // 设置视频的总时长
+    startTime.innerHTML = formateTime(0);
+    //视频在播放
+    bar.onmousedown = function(event) {
+        var event = event || window.event;
+        var leftVal = event.clientX - this.offsetLeft;
+        var that = this;
+        // 拖动一定写到 down 里面才可以
+        document.onmousemove = function(event) {
+            var event = event || window.event;
+            barleft = event.clientX - leftVal;
+            if (barleft < 0)
+                barleft = 0;
+            else if (barleft > scroll.offsetWidth - bar.offsetWidth)
+                barleft = scroll.offsetWidth - bar.offsetWidth;
+            curTime = parseInt(totalTime * (barleft / (scroll.offsetWidth - bar.offsetWidth) / 1000));
+            audio.currentTime = curTime;
+            updategress(parseInt(curTime * 1000));
+            //防止选择内容--当拖动鼠标过快时候，弹起鼠标，bar也会移动，修复bug
+            window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+        }
+
+    }
+    document.onmouseup = function() {
+            document.onmousemove = null; //弹起鼠标不做任何操作
+        }
+        //点击开始 
+    turnBtn.onclick = function() {
+            playFlag = !playFlag
+            if (playFlag) {
+                audio.play();
+                turnBtn.innerHTML = '暂停';
+                timer = setInterval(() => {
+                    curTime = audio.currentTime;
+                    updategress(curTime * 1000);
+                }, 500)
+            } else {
+                audio.pause();
+                window.clearInterval(timer);
+                turnBtn.innerHTML = '播放';
+            }
+        }
+        // 点击进度条
+    scroll.onclick = function(e) {
+            let evnet = event || window.event;
+            let curLeft = event.clientX - this.offsetLeft;
+            let _rate = curLeft / (scroll.offsetWidth);
+            startTime.innerHTML = formateTime(parseInt(totalTime * _rate));
+            curTime = parseInt(totalTime * _rate / 1000);
+            audio.currentTime = curTime;
+            updategress(parseInt(totalTime * _rate));
+        }
+        //更新进度
+    function updategress(time) {
+        var rate = time / totalTime;
+        var left = scroll.offsetWidth * rate;
+        startTime.innerHTML = formateTime(time);
+        mask.style.width = left + 'px';
+        bar.style.left = left + "px";
+        ptxt.innerHTML = "已经走了" + parseInt(rate * 100) + "%";
+        if (rate >= 1) {
+            audio.pause();
+            playFlag = false;
+            curTime = 0;
+            startTime.innerHTML = '播放';
+            mask.style.width = 0;
+            bar.style.left = 0;
+            window.clearInterval(timer);
+        }
+    }
+    //转化音频时间格式
+    function formateTime(value) {
+        let time = '';
+        let cValue = parseInt(value / 1000);
+        let h = Number(parseInt(cValue / 3600));
+        let m = Number(parseInt(cValue / 60));
+        let s = Number(parseInt(cValue % 60));
+        if (h > 0) {
+            if (m >= 60) {
+                m -= 60 * h;
+            }
+            time = this.formateTimes(h + ":" + m + ":" + s);
+        } else {
+            time = this.formateTimes(m + ":" + s);
+        }
+        return time
+    }
+
+    function formateTimes(value) {
+        var time = "";
+        var s = value.split(":");
+        var i = 0;
+        for (; i < s.length - 1; i++) {
+            time += s[i].length === 1 ? ("0" + s[i]) : s[i];
+            time += ":";
+        }
+        time += s[i].length === 1 ? ("0" + s[i]) : s[i];
+        return time;
+    }
+</script>
+
+</html>
