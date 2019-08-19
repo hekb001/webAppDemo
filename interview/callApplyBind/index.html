@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>call,apply,bind</title>
+</head>
+
+<body>
+    <h2>
+        1.call与apply.bind都可以用来在函数调用的时候，改变this的指向;<br> 2.call与apply比较相似，不同点是：在调用的时候，apply传递的参数使用“,”隔开，apply是以数组的方式;
+        <br> 3.bind的用法通常用来保留this，使在调用的时候，仍然可以读取到外层的变量;
+        <br> 4.call与aplly 可以用来，获取数组最大值，将伪数组转变成数组，判断是否是对象／数组<br>
+    </h2>
+</body>
+<script>
+    //call 与apply 经典的用法，同过原型链上暴露的方法去call （要继承的对象）；既可以继承父类的方法，也可以传递参数
+    function Friute() {
+
+    }
+    Friute.prototype = {
+        color: 'red',
+        getFriuteColor: function() {
+            console.log('my color is ' + this.color)
+        }
+    }
+    var apply = new Friute();
+    apply.getFriuteColor();
+    var bananer = {
+        color: 'yellow'
+    }
+    apply.getFriuteColor.call(bananer); //同过原型链上暴露的方法去call （要继承的对象）；既可以继承父类的方法，也可以传递参数
+    //call跟aplly可用来获取获取数组当中，值最大项,与最小项
+    var arr = [1, 2, 4, 6, 3, 66];
+    console.log(Math.max.apply(Math, arr));
+    console.log(Math.max.call(Math, 1, 2, 4, 6, 3, 66));
+    console.log(Math.min.apply(Math, arr));
+    console.log(Math.min.call(Math, 1, 2, 4, 6, 3, 66));
+    //实现一个log函数，将当前参数依次输出出来；
+    function log() {
+        console.log.apply(console, arguments)
+    }
+    log(1);
+    log(1, 2, 3, 4, 5);
+    //在上述基础上将hello world 前面加上 (app)
+    var str = 'hello world';
+
+    function logs() {
+        var arr = Array.prototype.slice.call(arguments);
+        arr.unshift('(app)');
+        log(arr);
+    }
+    logs(str);
+    // 用来检测是否是数组 或者对象
+    var obj = {};
+    console.log(Object.prototype.toString.call(obj) === '[object Object]');
+    console.log(Object.prototype.toString.call(arr) === '[object Array]');
+    //bind的用法
+    var num = 9;
+    var numObj = {
+        num: 1,
+        getNumber: function() {
+            return this.num;
+        }
+    }
+    console.log(numObj.getNumber()); //1 this 指向的事numObj；
+    var getNum = numObj.getNumber;
+    console.log(getNum()); //9 this指向的全局
+    // bind 保留this
+    var barFun = function() {
+        return this.x
+    }
+    var bar = {
+        x: 3
+    }
+    var barIns = barFun.bind(bar);
+    console.log(barIns());
+</script>
+
+</html>

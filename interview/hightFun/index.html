@@ -33,6 +33,8 @@
             var _argus = Array.prototype.slice.call(arguments);
             var newArgus = argus.concat(_argus);
             return fn.apply(null, newArgus)
+                //return fn.call(null, newArgus[0], newArgus[1]);
+                // return fn(newArgus[0], newArgus[1]);
         }
     }
     var curryFn = curry(map, square);

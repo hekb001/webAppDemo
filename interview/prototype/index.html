@@ -19,11 +19,11 @@
 <h2>call继承与prototype继承相同点</h2>
 <h3>1.子类都可以实现对父类的继承。</h3>
 <h2>call继承与prototype继承不同点</h2>
-<h3>1.使用prototype继承，子对象可以调用原型链上所存在的属性和方法。</h3>
-<h3>2.使用call继承，只能继承父对象的属性跟方法，父对象原型链上的方法没有办法继承。</h3>
+<h3>1.使用prototype继承，子对象可以调用父对象，及父对象原型链上所拥有的属性和方法。</h3>
+<h3>2.使用call继承，能继承父对象的属性跟方法，父对象原型链上的方法可以通过 parent.prototype.fun.call办法继承。</h3>
 <h2>补充</h2>
-<h3>1.hasOwnProperty是用来检测对象自身是否包含某个属性的方法，原型链上有的方法不算自身拥有的</h3>
-<h3>2.getPropertyOf获取原型链上的方法，属性</h3>
+<h3>1.hasOwnProperty是用来检测对象自身是否包含某个属性的方法，特别注意：原型链上有的方法不算自身拥有的</h3>
+<h3>2.getPropertyOf获取原型链上的方法，属性。</h3>
 
 <body>
 
@@ -88,21 +88,22 @@
             return this.name
         }
     }
-    Parent.prototype.parentSay = function() {
-        return 'hello';
+    Parent.prototype.parentSay = function(a) {
+        // return 'hello';
+        console.log(a)
     }
 
     function Child() {
         this.say = function() {
-            Parent.call(this, 'hekabing')
+            // Parent.call(this, 'hekabing')
+            Parent.call(this, 'hekaibing');
+            Parent.prototype.parentSay.call(this, 'hekabing')
         }
     }
     var child = new Child();
-    child.say();
     //child 调用parent 的方法
+    child.say(); //hekaibing
     console.log(child.sayHello()); //hekabing
-    console.log(child.parentSay()); //报错，没有找到该方法
-    //
 </script>
 
 </html>
