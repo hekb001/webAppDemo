@@ -90,14 +90,17 @@
                     delete temp;
                     break;
                 case "[object Object]":
-                    let temps = {};
-                    // 遍历对象的key 返回的值依次存入对象中
+                    let temps = {}; //新建一个temps用来放药克隆的数据
+                    // 遍历对象的key 返回的值依次存入keys数组中
                     let keys = Object.keys(data);
+                    // for (let i = 0; i < keys.length; i++) {
+                    //     temps[keys[i]] = cloneObj(data[keys[i]])
+                    // }
                     for (let i = 0, a; a = keys[i]; i++) {
+                        debugger;
                         temps[a] = cloneObj(data[a])
                         console.log(temps);
                     }
-
                     result = temps;
                     delete temps;
                     delete keys;
