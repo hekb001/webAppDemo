@@ -20,20 +20,20 @@ body {
     width: 100%;
 }
 
-em,
-.check,
-.unSelect {
+.content em,
+.content .check,
+.content .unSelect {
     cursor: pointer;
     display: inline-block;
     width: 20px;
     height: 20px;
 }
 
-.check,
-.unSelect,
-i,
-.falses {
-    background: url('../images/checkbox.jpg') no-repeat;
+.content .check,
+.content .unSelect,
+.content i,
+.content .falses {
+    background: url('../../images/checkbox.jpg') no-repeat;
     background-position: -368px -140px;
     transform: scale(0.5);
     width: 40px;
@@ -41,9 +41,9 @@ i,
     display: inline-block;
 }
 
-.select,
-.all {
-    background: url('../images/checkbox.jpg') no-repeat;
+.content .select,
+.content .all {
+    background: url('../../images/checkbox.jpg') no-repeat;
     background-position: -420px -140px;
     transform: scale(0.5);
     width: 40px;
@@ -51,8 +51,8 @@ i,
     display: inline-block
 }
 
-.mid {
-    background: url('../images/checkbox.jpg') no-repeat;
+.content .mid {
+    background: url('../../images/checkbox.jpg') no-repeat;
     background-position: -245px -140px;
     transform: scale(0.5);
     width: 40px;
@@ -60,12 +60,12 @@ i,
     display: inline-block
 }
 
-em.open {
+.content em.open {
     background: url(/static/media/icons.5859e577.png) no-repeat;
     background-position: -68px -161px;
 }
 
-em.fold {
+.content em.fold {
     background: url(/static/media/icons.5859e577.png) no-repeat;
     background-position: -91px -161px;
 }
