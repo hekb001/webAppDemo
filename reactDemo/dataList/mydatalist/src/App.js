@@ -20,7 +20,9 @@ class App extends Component {
       dataSource: [],
       checked: false,
       company: '明源云面试题',
-      datePicker:'antd日期组件'
+      datePicker: 'antd日期组件',
+      cascaders: "次级联动",
+      forms:"表单应用"
     }
   }
   componentWillMount() { 
@@ -78,7 +80,7 @@ class App extends Component {
         'color': 'black',
         'textAlign': 'center'
       }
-      const { value ,dataSource,checked,company,datePicker} = this.state;
+      const { value ,dataSource,checked,company,datePicker,cascaders,forms} = this.state;
      return (
       <div className="App">
         <Layout>
@@ -231,6 +233,14 @@ class App extends Component {
                   
                    <Link to="/datapicker">
                      <Button type="Dashed">{datePicker}</Button>
+                   </Link>
+                   <Link to="/cascaders">
+                       <Button type="primary">{cascaders}</Button>
+                      &nbsp;&nbsp;                
+                   </Link>
+                   <Link to="/forms">
+                       <Button type="primary">{forms}</Button>
+                      &nbsp;&nbsp;                
                    </Link>
                 </div> 
               </div>
