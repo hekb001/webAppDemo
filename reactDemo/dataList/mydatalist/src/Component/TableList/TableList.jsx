@@ -1,0 +1,148 @@
+import React, { Component } from 'react';
+import { Spin, Table, Card, Tabs, Select ,Icon,Row,Col,Avatar,Tooltip,Tag} from 'antd';
+const { TabPane } = Tabs;
+const { Meta } = Card;
+const { Option } = Select;
+const options = [];
+const columns = [
+    {
+        title: "姓名",
+        dataIndex: "userName",
+        key: "userName"
+    },
+    {
+        title: "密码",
+        dataIndex: "password",
+        key: "password"
+    },
+    {
+        title: "邮箱",
+        dataIndex: "email",
+        key: "email"
+    },
+    {
+        title: "地址",
+        dataIndex: "address",
+        key: "address",
+    }
+];
+const dataSource = [
+    {
+        key: '1',
+        userName: '何凯兵',
+        password: "073520",
+        email: '15018513561@163.com',
+        address:'民乐翠园'
+    },
+    {
+        key: '2',
+        userName: '何凯兵',
+        password: "073520",
+        email: '15018513561@163.com',
+        address:'民乐翠园'
+    }
+
+]    
+let timer;
+
+class TableList extends Component { 
+    constructor(props){ 
+        super(props)
+        this.state = {
+            loading: true,
+            tags: ['tag1','tag2ddwqeqweqweqw','tag3'],
+            inputVisible: false,
+            inputValue:''
+        }
+    }
+    componentWillMount() { 
+        this.getOptionsData()
+    }
+    getOptionsData() { 
+        for (let i = 0; i < 10; i++) { 
+            if (i < 9) { 
+                options.push(<Option key={i.toString()}>{i}</Option>)
+            }
+        }
+    }
+    //删除标签
+    closeTag(tag) { 
+
+    }
+    componentDidMount() { 
+        timer = setTimeout(() => { 
+            if (timer) { 
+                window.clearTimeout(timer)
+            }
+            this.setState({
+                loading:false
+            })
+        },1000)
+    }
+    render() { 
+        const { loading ,tags,inputValue,inputVisible,cloumns,data} = this.state;
+        return (<div className="table">
+            <Spin spinning={loading}>
+                 <Tabs defaultActiveKey="1">
+                    <TabPane tab="Tab 1" key="1">
+                        <Row gutter={16}>
+                            <Col span={8}>
+                                 <Card
+                                    title="select"
+                                    extra={<Icon type="user"/>}
+                                >
+                                    <Select
+                                        mode="multiple"
+                                        style={{ width: '80%' }}
+                                        placeHolder="please select"
+                                        defaultValue={['1','2']}
+                                    >
+                                        {options}
+                                    </Select>
+                                </Card>    
+                            </Col>
+                            <Col span={8}>
+                                <Card title="avatar">    
+                                    <Meta    
+                                        title="avatar"
+                                        avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>}
+                                        description="this is description"
+                                    />
+                                </Card>    
+                            </Col>
+                            <Col span={8}>
+                                 <Card
+                                    title="Tag"
+                                    extra={<Icon type="user"/>}
+                                >
+                                    {tags.map((tag,index) => { 
+                                        const isTooLong = tag && tag.length > 6;
+                                        const tagElem =
+                                            (<Tag key={index}
+                                                closable={index !== 0}
+                                                onClose={this.closeTag.bind(this,tag)}
+                                            >
+                                                {isTooLong ? `${tag.slice(0, 6)}...` : tag}
+                                            </Tag>);
+                                        return isTooLong ?
+                                            (<Tooltip key={index} title={tag}>
+                                                {tagElem}
+                                            </Tooltip>) :
+                                            (tagElem)
+                                    })}
+                                </Card>    
+                            </Col>
+                        </Row>
+                       
+                    </TabPane>
+                    <TabPane tab="Tab 2" key="2">
+                        <Table columns={columns} dataSource={dataSource}/>
+                    </TabPane> 
+                    <TabPane tab="Tab 3" key="3">tab3</TabPane>  
+                </Tabs>
+           </Spin>     
+        </div>)
+    }
+    
+}
+export default TableList
