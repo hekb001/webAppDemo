@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Spin, Table, Card, Tabs, Select ,Icon,Row,Col,Avatar,Tooltip,Tag} from 'antd';
+import { Spin, Table, Card, Tabs, Select ,Icon,Row,Col,Avatar,Tooltip,Tag,Input} from 'antd';
 const { TabPane } = Tabs;
 const { Meta } = Card;
 const { Option } = Select;
@@ -29,20 +29,29 @@ const columns = [
 const dataSource = [
     {
         key: '1',
-        userName: '何凯兵',
-        password: "073520",
+        userName: '何凯兵1',
+        password: "199110",
         email: '15018513561@163.com',
         address:'民乐翠园'
     },
     {
         key: '2',
-        userName: '何凯兵',
+        userName: 'liliwen',
         password: "073520",
         email: '15018513561@163.com',
         address:'民乐翠园'
     }
 
-]    
+]
+const rowSelection = {
+    onChange: (selectedRowKeys, selectedRows) => { 
+            console.log(`selectedRows:${JSON.stringify(selectedRows)},selectedRowKeys:${selectedRowKeys}`)
+    },
+    getCheckboxProps: record => ({ 
+        disabled: record.userName === "liliwen",
+        userName:record.userName
+    })
+}
 let timer;
 
 class TableList extends Component { 
@@ -68,6 +77,28 @@ class TableList extends Component {
     //删除标签
     closeTag(tag) { 
 
+    }
+    //添加标签
+    showInput=()=> { 
+        this.setState({inputVisible:true})
+    }
+    //失去焦点&键盘某个键位被按下释放
+    handleInputConfirm = () => { 
+        const { inputValue } = this.state;
+        let { tags } = this.state;
+        if (inputValue && tags.indexOf(inputValue) === -1) { 
+            tags = [...tags, inputValue];
+        }
+        this.setState({
+            tags: tags,
+            inputVisible: false,
+            inputValue:''
+        })
+    }
+    //输入框值发生改变时
+    handleInputChange = (e) => { 
+        console.log(e.target.value, 'e')
+        this.setState({inputValue:e.target.value})
     }
     componentDidMount() { 
         timer = setTimeout(() => { 
@@ -129,14 +160,30 @@ class TableList extends Component {
                                                 {tagElem}
                                             </Tooltip>) :
                                             (tagElem)
+                                        
                                     })}
+                                    {inputVisible &&
+                                        <Input
+                                        type="text"
+                                        size="small"
+                                        style={{ width: '78px' }}
+                                        onBlur={this.handleInputConfirm}
+                                        onChange={this.handleInputChange}
+                                        onPressEnter={this.handleInputConfirm}
+                                        />
+                                    }
+                                    {!inputVisible &&
+                                        <Tag onClick={this.showInput}>
+                                             <Icon type="plus"/>new Tag
+                                        </Tag>  
+                                    }
                                 </Card>    
                             </Col>
                         </Row>
                        
                     </TabPane>
                     <TabPane tab="Tab 2" key="2">
-                        <Table columns={columns} dataSource={dataSource}/>
+                        <Table columns={columns} dataSource={dataSource} rowSelection={rowSelection}/>
                     </TabPane> 
                     <TabPane tab="Tab 3" key="3">tab3</TabPane>  
                 </Tabs>

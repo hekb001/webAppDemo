@@ -1,7 +1,7 @@
 import React, { Component}from 'react';
 import {
   Button, Icon, Row, Col, Layout, Menu, Breadcrumb, Affix,
-  Dropdown,Pagination,Steps,AutoComplete,Checkbox
+  Dropdown,Pagination,Steps,AutoComplete,Checkbox,BackTop
 } from 'antd';
 import {
   Link
@@ -23,7 +23,8 @@ class App extends Component {
       datePicker: 'antd日期组件',
       cascaders: "次级联动",
       forms: "表单应用",
-      table:'表格'
+      table: '表格',
+      drawer:'抽屉'
     }
   }
   componentWillMount() { 
@@ -81,9 +82,10 @@ class App extends Component {
         'color': 'black',
         'textAlign': 'center'
       }
-      const { value ,dataSource,checked,company,datePicker,cascaders,forms,table} = this.state;
+      const { value ,dataSource,checked,company,datePicker,cascaders,forms,table,drawer} = this.state;
      return (
-      <div className="App">
+       <div className="App">
+        <BackTop /> 
         <Layout>
           <Header>
             <Menu
@@ -247,6 +249,10 @@ class App extends Component {
                        <Button type="primary">{table}</Button>
                       &nbsp;&nbsp;                
                    </Link>
+                    <Link to="/drawer">
+                       <Button type="primary">{drawer}</Button>
+                      &nbsp;&nbsp;                
+                   </Link>
                 </div> 
               </div>
              </Content>
@@ -257,7 +263,8 @@ class App extends Component {
           <Button type="danger">
             bottom
           </Button>
-        </Affix>
+         </Affix>
+         
       </div>
     );
   }

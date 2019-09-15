@@ -5,6 +5,7 @@ import DataPicker from '../Component/DataPicker/DataPicker';
 import CasCaders from '../Component/CasCaders/CasCaders';
 import Forms from '../Component/Forms/Forms';
 import TableList from '../Component/TableList/TableList';
+import Drawer from '../Component/Drawers';
 import {
   BrowserRouter as Router,
   Route,
@@ -19,6 +20,7 @@ import {
             <Route path="/cascaders" component={CasCaders} />
             <Route path="/forms" component={Forms} />
             <Route path="/table" component={TableList} />
+            <Route path="/drawer" component={Drawer} />
         </div>
  </Router>
 export default routers;

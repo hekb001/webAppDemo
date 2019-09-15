@@ -1,5 +1,5 @@
 /*<br/>
-    author：hekabing<br/>
+    author：hekaibing<br/>
 */<br/>
 主要是前端一些常用到的知识点的总结，实现小案例<br/>
     1.audio是原生js手写的音频播放，用到的是阿里云的点播技术平台<br/>
@@ -12,6 +12,7 @@
     8.hightFun 高阶函数<br/>
     9.prototype js原型，继承，函数方式继承，对象方式继承<br/>
 reacDemo<br/>
-    datalist 使用react 实现小案例，勾选，取消勾选，全选。。。<br/>
+    antd 蚂蚁金服组件案例<br/>
+    antd- mydalist明源云面试题<br/>
     react 工程<br/>
     wepack 使用express 搭建的node服务，后台渲染，支持websocket vconsole webpack 打包<br/>
