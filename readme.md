@@ -2,7 +2,7 @@
     author：hekaibing<br/>
 */<br/>
 主要是前端一些常用到的知识点的总结，实现小案例<br/>
-    1.audio是原生js手写的音频播放，用到的是阿里云的点播技术平台<br/>
+    1.audio是原生js的音频播放，用到的是阿里云的点播技术平台<br/>
     2.callApplyBind call与apply,bind的基本用法<br/>
     3.cloneObj js深度克隆<br/>
     4.closure js闭包<br/>
