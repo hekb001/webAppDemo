@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './TreeDataList.css';
+import HightComponent from '../HightComponent';
 class TreeDataList extends Component {
     static defaultProps = {
         data: 'props'
@@ -124,4 +125,4 @@ class TreeDataList extends Component {
         </div>)
     }
 }
-export default TreeDataList
+export default HightComponent(TreeDataList)
