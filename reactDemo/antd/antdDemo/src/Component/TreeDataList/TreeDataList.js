@@ -38,51 +38,41 @@ class TreeDataList extends Component {
             data:dataList
         })
     }
-    foldOrOpenItem(item) { 
-        console.log(item);
-        item.fold = !item.fold;
-        this.setState({})
-    }
-    checkChild(item) { 
-        
-        if (item.check == 'mid' || item.check == 'falses') {
-            item.check = 'all';
-            if(item.children && item.children.length > 0){
-            item.children.map((item1) => { 
-                item1.check = true ;
-            })
-        }
+    checkChild(item,event) { 
+        event.preventDefault();
+        if (item.check === 'mid' || item.check === 'falses' || !item.check) {
+                item.check = 'all';
+                if(item.children && item.children.length > 0){
+                item.children.map( item1 => item1.check = true)
+            }
         } else { 
             item.check = 'falses'
             if(item.children && item.children.length > 0){
-            item.children.map((item1) => { 
-                item1.check = false ;
-            })
-        }
+                item.children.map(item1 => item1.check = false)
+            }
         }
         
          this.setState({})
     }
-    checkItem(item, index) { 
+    checkItem(item, index, event) { 
+        event.preventDefault();
         console.log(index);
         item.check = !item.check;
         var count = 0;
         let data = this.state.data[index];
         if(data.children && data.children.length > 0){
-            data.children.map((item1) => { 
-                if (item1.check) { 
-                    count += 1;
-                }
-            })
+            data.children.map( item1 => 
+                item1.check? count += 1:''
+            )
             if (count > 0 && count < data.children.length) { 
                 console.log('mid')
-                this.state.data[index].check = 'mid'
+                data.check = 'mid'
             }
-            if (count > 0 && count == data.children.length) { 
-                 this.state.data[index].check = 'all'
+            if (count > 0 && count === data.children.length) { 
+                data.check = 'all'
             }
-            if (count == 0) { 
-                 this.state.data[index].check = 'falses'
+            if (count === 0) { 
+                data.check = 'falses'
             }
         }
          this.setState({})
@@ -100,9 +90,7 @@ class TreeDataList extends Component {
                     <li>
                         <span> 
                             <i  className={item.check}  onClick={this.checkChild.bind(this,item)}></i>
-                            <em className={item.fold ? 'fold' : 'open'} onClick={this.foldOrOpenItem.bind(this,item)}></em>
-                            {item.name}
-                         
+                            <span style={{verticalAlign:'middle'}}> {item.name}</span>  
                         </span> 
                         {item.children && item.children.length > 0 &&
                             <ul className="item-children" style={{display:item.fold ? 'none':'block'}}>

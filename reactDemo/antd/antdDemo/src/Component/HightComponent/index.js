@@ -1,4 +1,4 @@
-import React ,{Component} from 'react';
+import React from 'react';
  function fn (WrapComponent){
      return class HightComponent extends React.Component{
         render(){

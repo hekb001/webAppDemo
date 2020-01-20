@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Button, Drawer, Radio ,notification,Popconfirm,message} from 'antd';
 const RadioGroup = Radio.Group;
 

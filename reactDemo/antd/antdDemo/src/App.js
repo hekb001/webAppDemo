@@ -185,7 +185,7 @@ class App extends Component {
                  </div>
                  <br/>  
                 <Dropdown overlay={this.getMenuArrs.bind(this)} >
-                  <a>鼠标点击我／放在上面试试</a>
+                  <span>鼠标点击我放在上面试试</span>
                  </Dropdown>
                  <br/>  
                 <Pagination

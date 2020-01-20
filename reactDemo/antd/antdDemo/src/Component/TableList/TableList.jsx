@@ -111,7 +111,7 @@ class TableList extends Component {
         },1000)
     }
     render() { 
-        const { loading ,tags,inputValue,inputVisible,cloumns,data} = this.state;
+        const { loading ,tags,inputVisible} = this.state;
         return (<div className="table">
             <Spin spinning={loading}>
                  <Tabs defaultActiveKey="1">

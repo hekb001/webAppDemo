@@ -39,6 +39,7 @@ body {
     width: 40px;
     height: 40px;
     display: inline-block;
+    vertical-align: middle;
 }
 
 .content .select,
@@ -57,7 +58,7 @@ body {
     transform: scale(0.5);
     width: 40px;
     height: 40px;
-    display: inline-block
+    display: inline-block;
 }
 
 .content em.open {
