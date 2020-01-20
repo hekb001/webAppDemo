@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>async与await结合使用简书</title>
+</head>
+<style>
+    h2{
+        color:green
+    }
+</style>
+<body>
+    <h2>1.async函数代表一个异步函数，其中await智能在async函数里面使用</h2>
+    <h2>2.async函数返回的是一个promise对象，await就是等待这个promise的返回结果后，再继续往下执行</h2>
+    <h2>3.await等待的是一个promise对象，后面必须跟一个promise对象，但是不必写then,直接就可以得到返回的值</h2>
+    <h2>4.在适用promise.all的时候，一定要确保异步操作是强相关的，后续步骤必须依赖这几个步骤成功才能进行</h2>
+</body>
+<script>
+    async function test(){
+        return await new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                resolve('success')
+            },500)
+        })
+    }
+    test().then((data)=>{
+        console.log('data的值为...',data)
+    })
+    //封装一个request方法
+    var request=function(timer){
+        return new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                var value = Math.random();
+                if(value > 0.1){
+                    resolve(timer)
+                }else{
+                    reject('something error')
+                }
+               
+            },200)
+        })
+    }
+    async function testTimer(){
+       var result1 = await request(100);
+       var result2 = await request(result1 + 100);
+       var result3 = await request(result2 + 100);
+       return result3
+    }
+    testTimer().then(
+        (data)=>{ //成功的回调函数
+            console.log(data)
+        }
+    ).catch(
+        (error)=>{ //失败执行的函数，捕获异常
+            console.log('error is ...',error)
+        }
+    )
+    //在map循环中适用await
+    var timers=[100,200,300];
+    var resultArr = [];
+    var request1=function(timer){
+        return new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                resolve(timer)
+            },200)
+        })
+    }
+    async function mapTimer(){
+        //错误的写法 Uncaught SyntaxError: await is only valid in async function
+        // timers.map((timer)=>{
+        //     var res = await request1(timer);
+        //     resultArr.push(res);
+        // })
+        //正常的写法
+        // for(var timer of timers){
+        //     var res = await request1(timer);
+        //     resultArr.push(res);
+        // }
+        // return resultArr
+        //用promise.all的写法
+        // ①定义一个数组，里面都是一个异步函数，异步函数返回的结果需等待request()方法执行完成
+         var promiseFnArr = timers.map( async time => {
+             return await request(time)
+        })
+        console.log('promiseFnArr is ',promiseFnArr)
+        var a = await Promise.all(promiseFnArr);
+        return a;
+
+    }
+    mapTimer().then((data)=>{
+        console.log('resultArr is',data)
+    })
+</script>
+</html>
