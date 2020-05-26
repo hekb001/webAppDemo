@@ -50,17 +50,18 @@
             } else {
                 return
             }
-            if (event.button === 0) {
+            if (event.button === 0) {//左键
                 obj.addEventListener('mousemove', move);
                 startX = outeBox.scrollLeft; //滚动条的起始位置
-                pageX = event.clientX;
+                pageX = event.clientX;//坐标x起点位置
             }
         }
 
         function move(event) {
-            var left = event.clientX - pageX;
+            var left = event.clientX - pageX; //坐标x终点位置
             console.log('left' + left);
-            outeBox.scrollLeft = startX - left;
+            outeBox.scrollLeft = startX + left; //控制滚动条向同一方向滚动
+            //outeBox.scrollLeft = startX - left; //控制滚动条向反方向滚动
             return false
         }
 
