@@ -18,7 +18,8 @@
         "socket.io": "^2.2.0",
         "vconsole": "^3.3.0",
         "webpack": "^4.35.0",
-        "webpack-cli": "^3.3.4"
+        "webpack-cli": "^3.3.4",
+        "express": "^4.15.2"
     },
     "devDependencies": {
         "open": "^6.3.0"
