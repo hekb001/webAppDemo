@@ -231,6 +231,7 @@
             time += s[i].length === 1 ? ("0" + s[i]) : s[i];
             time += ":";
         }
+        //最后一位进行判断（目的是为了去除':'）
         time += s[i].length === 1 ? ("0" + s[i]) : s[i];
         return time;
     }
