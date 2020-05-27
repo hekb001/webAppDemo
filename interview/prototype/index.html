@@ -46,7 +46,7 @@
     console.log(childObj.m()) //4
     console.log(obj.m()) //5
     console.log(obj.hasOwnProperty('a')) //true 对象本身有该属性
-    console.log(obj.hasOwnProperty('b')) //false 对象本身有，原型链上没有
+    console.log(obj.hasOwnProperty('b')) //false 对象本身没有，原型链上有
     var parentObj1 = {
         a1: 1,
         b1: 3,
@@ -62,8 +62,8 @@
     childObj1.__proto__ = parentObj1;
     //obj1的原型指向childObj1
     obj1.__proto__ = childObj1;
-    console.log(childObj1.m1())
-    console.log(obj1.m1());
+    console.log(childObj1.m1()) //4
+    console.log(obj1.m1()); //5
     //********************************函数的继承 通过prototype
     function P() {
 
@@ -85,25 +85,25 @@
     function Parent(name) {
         this.name = name;
         this.sayHello = function() {
+            console.log('步骤2')
             return this.name
         }
     }
     Parent.prototype.parentSay = function(a) {
-        // return 'hello';
+        console.log('步骤1')
         console.log(a)
     }
 
     function Child() {
         this.say = function() {
-            // Parent.call(this, 'hekabing')
-            Parent.call(this, 'hekaibing');
-            Parent.prototype.parentSay.call(this, 'hekabing')
+            Parent.call(this, 'hekaibing1');
+            Parent.prototype.parentSay.call(this, 'hekabing2')
         }
     }
     var child = new Child();
     //child 调用parent 的方法
-    child.say(); //hekaibing
-    console.log(child.sayHello()); //hekabing
+    child.say(); //目的是为了让child继承parent hekabing2 执行 parentSay方法
+    console.log(child.sayHello()); //hekabing1 执行 sayHello方法
 </script>
 
 </html>
