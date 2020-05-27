@@ -83,9 +83,20 @@
         // ①定义一个数组，里面都是一个异步函数，异步函数返回的结果需等待request()方法执行完成
          var promiseFnArr = timers.map( async time => {
              return await request(time)
-        })
+        });
+        //不使用循环的写法
+        // var asyn1 = async function(){
+        //     return await request('100')
+        // }
+        // var asyn2 = async function(){
+        //     return await request('200')
+        // }
+        // var asyn3 = async function(){
+        //     return await request('300')
+        // }
+        // var a = await Promise.all([asyn1(),asyn2(),asyn3()]);
         console.log('promiseFnArr is ',promiseFnArr)
-        var a = await Promise.all(promiseFnArr);
+         var a = await Promise.all(promiseFnArr);
         return a;
 
     }
