@@ -12,14 +12,23 @@ module.exports = {
     entry: {
         app: './src/index.js',
         vendor: [
-            'lodash'
-        ]
+            'react',
+            'react-dom'
+          ]
     },
     resolve: {
         extensions: [' ', '.js', '.json', '.jsx', '.css', '.less','.json'],
         modules: [resolve( "src"), "node_modules"], //绝对路径;
     },
     module: {
+        rules: [
+            {
+                test: /\.(js|jsx)?$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/,
+                include: [resolve('src'), resolve('test')]
+            },
+        ]
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),
