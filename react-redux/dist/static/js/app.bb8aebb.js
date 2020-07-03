@@ -1,0 +1,2 @@
+webpackJsonp([1],{lVK7:function(e,n,t){"use strict";Object.defineProperty(n,"__esModule",{value:!0});var l=t("M4fF"),o=t.n(l);document.body.appendChild(function(){var e=document.createElement("div");return e.innerHTML=o.a.join(["Hello","webpack"]," "),e.classList.add("hello"),e}())}},["lVK7"]);
+//# sourceMappingURL=app.bb8aebb.js.map
