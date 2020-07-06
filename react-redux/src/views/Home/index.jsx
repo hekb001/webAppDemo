@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
 
-class App extends Component {
-  goHome=()=>{
-    browserHistory.push('/home')
+class Home extends Component {
+  goBack=()=>{
+    browserHistory.goBack();
   }
     render() {
       return (
         <div className="App">
-          <div onClick={this.goHome}>跳转到主页</div>
+          <div>主页</div>
+          <div onClick={this.goBack}>返回</div>
         </div>
       );
     }
   }
 
-  export default App;
+  export default Home;
