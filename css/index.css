@@ -29,7 +29,6 @@ body,div, ul,li,ol, p,span, h1, h2, h3, h4, h5, h6, dl, dd,dt, form, input, text
     float: right;
   }
   .layout{
-    min-width: 988px;
     min-height: 100vh;
     background-color: #fff;
   }
@@ -43,4 +42,7 @@ body,div, ul,li,ol, p,span, h1, h2, h3, h4, h5, h6, dl, dd,dt, form, input, text
   }
   .banner ul li {
      float: left; 
+  }
+  .banner ul li img{
+    width: 100%;
   }
