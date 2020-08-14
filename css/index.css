@@ -1,0 +1,46 @@
+body,div, ul,li,ol, p,span, h1, h2, h3, h4, h5, h6, dl, dd,dt, form, input, textarea, select，option {
+    padding: 0;
+    margin: 0;
+  }
+  *{
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  }
+  li {
+    list-style: none;
+  }
+  img {
+    border: none;
+  }
+  a {
+    text-decoration: none;
+  }
+  
+  .clearfix:after {
+    content: ".";
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+  }
+  .fl {
+    float: left;
+  }
+  .fr {
+    float: right;
+  }
+  .layout{
+    min-width: 988px;
+    min-height: 100vh;
+    background-color: #fff;
+  }
+  .banner { 
+    position: relative; 
+    overflow: auto; 
+  }
+  .banner li { 
+    list-style: none; 
+    text-align: center;
+  }
+  .banner ul li {
+     float: left; 
+  }
