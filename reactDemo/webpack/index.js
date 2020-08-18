@@ -5,6 +5,9 @@ var bodyParser = require('body-parser');
 var open = require('open');
 var fs = require('fs');
 var io = require('socket.io');
+// const list1Router = require('./router/list1');
+// const list2Router = require('./router/list2');
+const router = require('./router');
 // var vconsle = require('vconsole');
 
 app.use(bodyParser.json());
@@ -13,6 +16,13 @@ app.get('/', (req, res) => {
     var Path = path.resolve(__dirname + '/public/index.html')
     res.sendfile(listPath);
 })
+app.post('/name/:age',(req, res)=>{
+    let {age} = req.params;
+    res.json({
+        name:'tom',
+        age,
+    })
+})
 app.get('/list', (req, res) => {
     var listPath = path.resolve(__dirname + '/public/list.html')
     res.sendfile(listPath);
@@ -20,6 +30,10 @@ app.get('/list', (req, res) => {
         console.log(JSON.res) //获取文件的下的内容，爬虫；
     })
 })
+// app.use('/api',list1Router);
+// app.use('/api',list2Router);
+//注册路由
+app.use('/api',router);
 var server = app.listen('8080', function() {
     console.log('服务器启动')
 })
