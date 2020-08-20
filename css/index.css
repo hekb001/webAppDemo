@@ -28,9 +28,63 @@ body,div, ul,li,ol, p,span, h1, h2, h3, h4, h5, h6, dl, dd,dt, form, input, text
   .fr {
     float: right;
   }
+  @media screen and (max-width: 500px) {
+    .layout .top .tabs{
+      display: none;
+    }
+  }
   .layout{
+    max-width: 1200px;
+    margin: auto;
     min-height: 100vh;
     background-color: #fff;
+  }
+  .layout .top{
+    display: flex;
+    cursor: pointer;
+    padding:10px;
+    background-color: red;
+    border-bottom: 1px solid #ddd;
+  }
+  .layout .top img{
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    vertical-align: middle;
+  }
+  .layout .top .logo>div{
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 20px;
+  }
+  .layout .top .logo>div span:first-child{
+    font-size: 16px;
+    color:#fff;
+    font-weight: bold;
+  }
+  .layout .top .logo>div span:last-child{
+    color:#fff;
+    font-size: 12px;
+  }
+  .layout .top .logo, .layout .top .telphone{
+    flex: 2;
+  }
+  .layout .top .telphone p:first-child{
+    font-weight: bold;
+  }
+  .layout .top .telphone{
+    margin-left: 30px;
+  }
+  .layout .top .telphone p.phone-num{
+    font-size: 12px;
+    font-weight: bold;
+    color:#fff;
+  }
+  .layout .top .tabs{
+    flex: 6;
+  }
+  .layout .top .tabs ul li{
+    float: left;
   }
   .banner { 
     position: relative; 
