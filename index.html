@@ -5,12 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
     <title>米殿传媒</title>
     <link rel="stylesheet" type="text/css" href="./css/index.css">
-    <link href="https://cdn.bootcdn.net/ajax/libs/unslider/2.0.3/css/unslider-dots.css" rel="stylesheet">
-    <link href="https://cdn.bootcdn.net/ajax/libs/unslider/2.0.3/css/unslider.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/banner.css">
 </head>
 <script src="./js/jquery.min.js"></script>
-<script src="https://cdn.bootcdn.net/ajax/libs/unslider/2.0.3/js/unslider-min.js"></script>
 <script src="./js/index.js"></script>
+<script src='./js/banner.js'></script>
 <body>
    <div class="layout">
      <header class="header">
@@ -29,13 +28,13 @@
              </div>
              <div class="tabs">
                  <ul>
-                     <li>首页</li>
+                     <li class='_active'>首页</li>
                      <li>宣传片</li>
                      <li>广告片</li>
                      <li>音乐MV</li>
                      <li>微电影</li>
                      <li>摄影摄像</li>
-                     <li>关于星禾</li>
+                     <li>关于米殿</li>
                      <li>行业资讯</li>
                      <li>联系我们</li>
                  </ul>
@@ -43,7 +42,22 @@
          </div>
      </header>
      <section class="section">
-      
+      <div id="content" class="conClass">
+        <img src="./images/01.png"class="imgshow img"/>
+        <img src="./images/02.png"class="imghide img"/>
+        <img src="./images/03.png"class="imghide img"/>
+        <img src="./images/04.png"class="imghide img"/>
+        <img src="./images/05.png"class="imghide img"/>
+        <div id="left">&lt;</div>
+        <div id="right">&gt;</div>
+        <div id="nav">                
+                <div class="divshow"></div>
+                <div class="divhide"></div>
+                <div class="divhide"></div>
+                <div class="divhide"></div>
+                <div class="divhide"></div>           
+        </div>
+      </div>
      </section>
      <footer class='footer'>
         
@@ -51,8 +65,5 @@
    </div>
 </body>
 <script>
-    $(function() {
-        $('.banner').unslider();
-    });
 </script>
 </html>

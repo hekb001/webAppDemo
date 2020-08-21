@@ -1,0 +1,58 @@
+  /*容器*/
+  #content{
+    padding: 0px;
+    margin: 0px auto;
+    position: relative;
+}
+/*容器中图片样式*/
+#content img{
+    width: 100%;
+    max-height: 400px;
+    position: absolute;
+}
+/*在光标图片上时,为小手状态*/
+#content:hover{
+    cursor: pointer;    
+}
+/*图片隐藏*/
+.imgshow{
+    display: block;
+}
+/*图片显示*/
+.imghide{
+    display: none;                
+}
+#left,#right{
+    position: absolute;                
+    width: 25px;
+    height: 50px;
+    background-color: gray;
+    color: white;
+    line-height: 50px;    
+    text-align: center;
+    font-size: 22px;
+    border-radius:5px ;
+}
+#left:hover,#right:hover{
+    opacity: 0.5;
+}
+#nav:hover{
+    cursor: default;
+}
+#nav div{                
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;                
+    margin-left: 10px;
+    margin-top: 5px;
+    float: left;
+}
+.divshow{
+    background-color: red;
+}
+.divhide{
+    background-color: lawngreen;
+}
+#nav div:hover{
+    opacity: 0.5;
+}
