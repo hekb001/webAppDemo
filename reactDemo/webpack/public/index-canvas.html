@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas</title>
+</head>
+<body>
+  
+</body>
+<script>
+    var canvasDom = document.createElement('canvas');
+    var logSrc = parent.data[0].src || 'https://mila-static.oss-cn-shenzhen.aliyuncs.com/saas/pic/hxd_logo.png'
+    canvasDom.style={};
+    canvasDom.style.width = '100%';
+    canvasDom.style.height = '100%';
+    canvasDom.style.zoom = '0.25'
+    canvasDom.setAttribute('id','myCanvas')
+    document.body.append(canvasDom);
+    //获取canvas元素
+    var dom = document.getElementById('myCanvas');
+    var ctx = dom.getContext('2d');
+    var img = new Image();
+    var times = 1;
+    img.src = logSrc;
+    img.onload=function(){
+        console.log('图片加载中')
+        console.log(img.naturalWidth,img.naturalHeight,'img.naturalWidth','img.naturalHeight')
+        var ratio = img.naturalHeight/img.naturalWidth;
+        ctx.drawImage(img,0,0,50*times,50*ratio*times);
+    }
+
+    ctx.beginPath();
+    var fontsize = 13;
+    var x = 120,y=120;
+    var box={
+        width:20
+    }
+    ctx.font = fontsize*times+'px 黑体';
+    ctx.textAlign = 'left';
+    ctx.textBaseline = 'top';
+    ctx.fillStyle = '#000';
+    ctx.fillText('hell word', x+3, y);
+    ctx.strokeStyle="#000";
+    ctx.beginPath();
+    ctx.moveTo(x,y+fontsize*times+3*times);
+    ctx.lineTo((box.width-32)*times, y+fontsize*times+3*times);
+    ctx.lineWidth = 1*times/1.5;
+    ctx.stroke();
+</script>
+</html>

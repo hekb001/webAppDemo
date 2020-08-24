@@ -6,10 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+          iframe{
+            width:300px;
+            height: 200px;
+        }
+    </style>
 </head>
 
 <body>
-    <div>list1133</div>
+    <div>
+        <button id ='print'>
+            打印
+        </button>
+    </div>
+    <iframe src="./index-canvas.html" frameborder="0" id='print-data'></iframe>
 </body>
-
+    <script>
+        var btn = document.getElementById('print');
+        var iframe = document.getElementById('print-data')
+        window.data = [
+            {
+                id:'001',
+                src:'https://mila-static.oss-cn-shenzhen.aliyuncs.com/saas/pic/hxd_logo.png'
+            }
+        ]
+        window.onload=function(){
+            btn.addEventListener('click',()=>{
+                console.log('点击')
+                var contentWindow = iframe.contentWindow;
+                contentWindow.print();
+            },false)
+        }
+    </script>
 </html>
