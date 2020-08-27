@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Button} from 'antd';
 import { Link, browserHistory } from 'react-router';
 
 class Home extends Component {
@@ -9,7 +10,7 @@ class Home extends Component {
       return (
         <div className="App">
           <div>主页</div>
-          <div onClick={this.goBack}>返回</div>
+          <Button onClick={this.goBack} type='primary'>返回</Button>
         </div>
       );
     }

@@ -28,6 +28,23 @@ module.exports = {
                 exclude: /node_modules/,
                 include: [resolve('src'), resolve('test')]
             },
+            {
+                test:/\.(css|less)$/,
+                use:[
+                    {
+                        loader:'style-loader',
+                    },
+                    {
+                        loader:'css-loader',
+                    },
+                    {
+                        loader:'less-loader',
+                        options: {
+                            javascriptEnabled: true
+                        }
+                    }
+                ]
+            }
         ]
     },
     plugins: [

@@ -13,7 +13,7 @@ module.exports = merge(base, {
         path: resolve('dist'), // 输出的文件地址
         publicPath: './'
     },
-    devtool: 'source-map',
+    devtool: 'source-map',//打包出来的文件加上source-map
     module: {
     },
     plugins: [
