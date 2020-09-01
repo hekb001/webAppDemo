@@ -80,7 +80,7 @@ module.exports = {
             }
         ]
     },
-    plugins: process.env.NODE_ENV != 'dev'?webpackPlugin.push(
+    plugins: process.env.NODE_ENV != 'dev'?webpackPlugin.unshift(
         new CleanWebpackPlugin(['dist'])
     ):webpackPlugin,
 };
