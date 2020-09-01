@@ -16,7 +16,7 @@ module.exports = merge(base, {
         path: resolve('dist'), // 输出的文件地址
         publicPath: ''
     },
-    devtool: 'inline-source-map',
+    // devtool: 'inline-source-map',
     module: {
     },
     devServer: {
