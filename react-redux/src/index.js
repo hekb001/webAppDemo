@@ -1,6 +1,6 @@
-import React from 'react';
+import React from 'react'; 
 import ReactDOM from 'react-dom';
-import { browserHistory, Router } from 'react-router';
+import { browserHistory, Router} from 'react-router';
 import allRoutes from './routes';
 import { syncHistoryWithStore } from 'react-router-redux';
 
