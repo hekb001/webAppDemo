@@ -34,10 +34,10 @@ app.get('/list', (req, res) => {
 // app.use('/api',list2Router);
 //注册路由
 app.use('/api',router);
-var server = app.listen('8080', function() {
+var server = app.listen('8081', function() {
     console.log('服务器启动')
 })
-open('http://localhost:8080/', "chrome");
+open('http://localhost:8081/', "chrome");
 var socket = io.listen(server);
 socket.on('connection', function(client) {
     console.log('建立与服务端的连接')
