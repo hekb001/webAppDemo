@@ -8,7 +8,7 @@ function resolve (dir) {
     return path.join(__dirname, dir)
 }
 // 端口
-const port = 8080;
+const port = 8081;
 
 module.exports = merge(base, {
     output: {
@@ -18,6 +18,10 @@ module.exports = merge(base, {
     },
     // devtool: 'inline-source-map',
     module: {
+    },
+    resolve:{
+        extensions:['.js','.jsx'],
+        modules:[path.resolve(__dirname,'src'),'node_modules']
     },
     devServer: {
         contentBase: './dist',
