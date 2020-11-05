@@ -1,0 +1,100 @@
+{
+  "id": "1682302",
+  "name": "ucpin",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "3217835",
+      "name": "信封",
+      "font_class": "icon-",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "11641878",
+      "name": "加号",
+      "font_class": "jiahao",
+      "unicode": "e620",
+      "unicode_decimal": 58912
+    },
+    {
+      "icon_id": "845828",
+      "name": "眼睛",
+      "font_class": "yanjing",
+      "unicode": "e668",
+      "unicode_decimal": 58984
+    },
+    {
+      "icon_id": "648773",
+      "name": "简历",
+      "font_class": "jianli",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "553322",
+      "name": "所属职位",
+      "font_class": "suoshuzhiwei",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "2019065",
+      "name": "我",
+      "font_class": "wo",
+      "unicode": "e7ab",
+      "unicode_decimal": 59307
+    },
+    {
+      "icon_id": "3640193",
+      "name": "人才",
+      "font_class": "rencai",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "3715707",
+      "name": "地点",
+      "font_class": "didian",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "5924470",
+      "name": "地点",
+      "font_class": "didian1",
+      "unicode": "e61c",
+      "unicode_decimal": 58908
+    },
+    {
+      "icon_id": "6265099",
+      "name": "简历",
+      "font_class": "resume-line",
+      "unicode": "e64a",
+      "unicode_decimal": 58954
+    },
+    {
+      "icon_id": "6798117",
+      "name": "职位管理",
+      "font_class": "zhiweiguanli",
+      "unicode": "e680",
+      "unicode_decimal": 59008
+    },
+    {
+      "icon_id": "8222920",
+      "name": "男人",
+      "font_class": "nanren",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "8222923",
+      "name": "女人",
+      "font_class": "nvren",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    }
+  ]
+}

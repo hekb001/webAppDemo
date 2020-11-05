@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字体图标的引用</title>
+    <!-- 下载到本地的引用 -->
+    <!-- <link rel="stylesheet" href="./fonts/iconfont.css"> -->
+    <!-- 远程cdn链接的引用 start-->
+    <script src="https://at.alicdn.com/t/font_1682302_eutdf8jrvp.js"></script>
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_1682302_eutdf8jrvp.css">
+    <style>
+        @font-face {
+        font-family: 'iconfont';  /* project id 1682302 */
+        src: url('//at.alicdn.com/t/font_1682302_eutdf8jrvp.eot');
+        src: url('//at.alicdn.com/t/font_1682302_eutdf8jrvp.eot?#iefix') format('embedded-opentype'),
+        url('//at.alicdn.com/t/font_1682302_eutdf8jrvp.woff2') format('woff2'),
+        url('//at.alicdn.com/t/font_1682302_eutdf8jrvp.woff') format('woff'),
+        url('//at.alicdn.com/t/font_1682302_eutdf8jrvp.ttf') format('truetype'),
+        url('//at.alicdn.com/t/font_1682302_eutdf8jrvp.svg#iconfont') format('svg');
+    }
+    </style>
+     <!-- 远程cdn链接的引用end-->
+</head>
+<body>
+    <h3>测试下字体图标的引用</h3>
+    <div class='box'>
+        <i class='iconfont icon-jiahao'></i>
+    </div>
+</body>
+</html>
