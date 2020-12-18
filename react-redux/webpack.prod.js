@@ -2,34 +2,39 @@ const webpack = require('webpack');
 const path = require('path');
 const merge = require('webpack-merge');
 const base = require('./webpack.base.js');
-
-function resolve (dir) {
+const TerserPlugin = require("terser-webpack-plugin");
+const plugins = new TerserPlugin({
+    parallel: true,
+    cache: true,
+    terserOptions: {
+        parse: {
+            ecma: 8,
+        },
+        compress: {
+            ecma: 5,
+            warnings: false,
+            comparisons: false,
+            inline: 2,
+            pure_funcs: ["console.log"]
+        },
+    },
+});
+function resolve(dir) {
     return path.join(__dirname, dir)
 }
-
-module.exports = merge(base, {
+const prodConfig = merge(base, {
     output: {
         filename: 'static/js/[name].[hash:7].js', //
         path: resolve('dist'), // 输出的文件地址
         publicPath: './'
     },
-    devtool: 'none',//
+    mode: 'production',
+    devtool: 'none',
     module: {
     },
-    plugins: [
-	    new webpack.optimize.UglifyJsPlugin({ // 压缩JS
-            compress: {
-                warnings: false,
-                comparisons: false,
-            },
-            mangle: {
-                safari10: true,
-            },
-            output: {
-                comments: false,
-                ascii_only: true,
-            },
-            sourceMap: true,
-        }),
-    ]
 });
+prodConfig['optimization'] = Object.assign(prodConfig['optimization'], {
+    minimize: true,
+    minimizer: [plugins],
+})
+module.exports = prodConfig
