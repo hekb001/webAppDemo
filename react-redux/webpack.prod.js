@@ -24,7 +24,8 @@ function resolve(dir) {
 }
 const prodConfig = merge(base, {
     output: {
-        filename: 'static/js/[name].[hash:7].js', //
+        filename: '[hash:8].[name].js',
+		chunkFilename: '[hash:8].[name].js',
         path: resolve('dist'), // 输出的文件地址
         publicPath: './'
     },
