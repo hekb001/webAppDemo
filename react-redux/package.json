@@ -11,7 +11,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "betterScripts":{
+  "betterScripts": {
     "nodemon-dev": {
       "command": "webpack-dev-server --config webpack.dev.js",
       "env": {
@@ -69,6 +69,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.15",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "redux": "^4.0.5"
   }
 }
