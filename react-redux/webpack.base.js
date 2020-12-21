@@ -7,8 +7,8 @@ const CopyWebpackPlugin = require('copy-webpack-plugin'); // copy
 function resolve(dir) {
     return path.join(__dirname, dir);
 }
-const webpackPlugin = [
-    new CleanWebpackPlugin(['dist']),
+console.log(process.env.NODE_ENV,'process.env.NODE_ENV')
+let webpackPlugin = [
     new CopyWebpackPlugin([{
         from: "./public",
         to: "",
@@ -32,6 +32,8 @@ const webpackPlugin = [
     }),
     new webpack.HashedModuleIdsPlugin(), // 修复vendor hash
 ]
+//生产环境打包先清理dist
+process.env.NODE_ENV == 'production' && webpackPlugin.unshift(new CleanWebpackPlugin(['dist']))
 module.exports = {
     entry: {
         app: './src/index.js',
