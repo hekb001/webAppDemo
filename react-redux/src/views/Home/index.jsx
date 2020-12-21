@@ -881,6 +881,7 @@ class Home extends Component {
   }
   //组件加载时，订阅监听事件
   componentDidMount() {
+    console.log(process.env,'process.env');
     store.subscribe(this.listerner.bind(this));
   }
   //跳转公司详情页

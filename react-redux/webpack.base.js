@@ -3,7 +3,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 生成html
 const CleanWebpackPlugin = require('clean-webpack-plugin'); // 清除dist
 const CopyWebpackPlugin = require('copy-webpack-plugin'); // copy
-
+const processEnv = require('./server/index');
+console.log(processEnv,'processEnv....')
 function resolve(dir) {
     return path.join(__dirname, dir);
 }
@@ -29,6 +30,9 @@ let webpackPlugin = [
             minifyJS: true,
             minifyURLs: true,
         }
+    }),
+    new webpack.DefinePlugin({
+        'process.env': JSON.stringify(processEnv)
     }),
     new webpack.HashedModuleIdsPlugin(), // 修复vendor hash
 ]
