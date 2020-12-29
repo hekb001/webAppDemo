@@ -9,7 +9,7 @@ componentDidMount(){
 }
   render() {
     return (
-      <div >
+      <div className='ml-5'>
        公司详情页
       </div>
     );

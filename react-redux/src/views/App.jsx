@@ -20,7 +20,7 @@ export default function App() {
   return (
     <div className="App">
       <div>
-        <Button onClick={() => changeLanguage('1')} type='primary'>切换中文</Button>
+        <Button onClick={() => changeLanguage('1')} type='primary' className='mr-5'>切换中文</Button>
         <Button onClick={() => changeLanguage('2')}>切换英文</Button>
       </div>
       <div>

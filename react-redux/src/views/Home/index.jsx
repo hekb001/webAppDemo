@@ -76,7 +76,7 @@ export default function Home(props) {
   }
   return (
     <div className="App">
-      <div>主页</div>
+      <div className='ml-5'>主页</div>
       <Tree
         checkable={checkable}
         checkStrictly={checkStrictly}
