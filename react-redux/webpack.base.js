@@ -3,6 +3,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // 生成html
 const CleanWebpackPlugin = require('clean-webpack-plugin'); // 清除dist
 const CopyWebpackPlugin = require('copy-webpack-plugin'); // copy
+const theme =require('./theme.js');
 const processEnv = require('./server/index');
 console.log(processEnv,'processEnv....')
 function resolve(dir) {
@@ -81,7 +82,9 @@ module.exports = {
                     {
                         loader:'less-loader',
                         options: {
-                            javascriptEnabled: true
+                            javascriptEnabled: true,
+                            sourceMap: true, 
+                            modifyVars: theme,
                         }
                     }
                 ]

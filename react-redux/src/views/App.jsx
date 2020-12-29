@@ -20,10 +20,10 @@ export default function App() {
   return (
     <div className="App">
       <div>
-        <Button onClick={() => changeLanguage('1')} type='primary' className='mr-5'>切换中文</Button>
+        <Button onClick={() => changeLanguage('1')} type='primary' >切换中文</Button>
         <Button onClick={() => changeLanguage('2')}>切换英文</Button>
       </div>
-      <div>
+      <div className='ml-5'>
         {/* 动态传值 */}
         <FormattedMessage id='home.item1' values={{ name: langType == '1' ? '何凯兵' : 'kevin' }} />
       </div>
