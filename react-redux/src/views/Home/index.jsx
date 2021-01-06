@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Tree, Checkbox, Table, Divider } from 'antd';
+import { Button, Tree, Checkbox, Table, Divider,Spin } from 'antd';
 import store from '../../store/configureStore';
 import {myaction,getAsyncData} from 'action/home.js';
 import { Link, browserHistory } from 'react-router';
@@ -51,6 +51,7 @@ const treeData = [
 
 export default function Home(props) {
   const asyncPayload = useSelector(state => state.home.asyncPayload) || [];
+  const pending = useSelector(state => state.home.pending) || false;
   const [expandedKeys, onExpand] = useState(['0-0-0', '0-0-1']);
   const [checkStrictly, toggleStrictly] = useState(true);
   const [checkable, selectMore] = useState(false);
@@ -63,6 +64,7 @@ export default function Home(props) {
   }
   //获取state里面的数据
   const getState = () => {
+    console.log(process.env,'process.env...')
     console.log('asyncPayload',asyncPayload);
   }
   //修改state里面的数据
@@ -76,26 +78,28 @@ export default function Home(props) {
   return (
     <div className="App">
       <div className='ml-5'>主页</div>
-      <Tree
-        checkable={checkable}
-        checkStrictly={checkStrictly}
-        onExpand={(expandedKeys) => { onExpand(expandedKeys) }}
-        draggable
-        expandedKeys={expandedKeys}
-        autoExpandParent={autoExpandParent}
-        onCheck={(data) => onCheck(data)}
-        checkedKeys={checkedKeys}
-        onSelect={(data) => onSelect(data)}
-        selectedKeys={selectedKeys}
-        treeData={treeData}
-      >
-      </Tree>
-      <Button onClick={goBack} type='primary'>返回</Button><br /><br />
-      <Button onClick={changeState} type='primary'>设置state里面的数据</Button><br /><br />
-      <Checkbox value={checkable} onChange={() => selectMore(!checkable)}>多机构选择</Checkbox><br /><br />
-      <Checkbox value={checkStrictly} onChange={() => toggleStrictly(!checkStrictly)}>包含下级</Checkbox><br />
-      <Button onClick={getState}>获取store里面的state</Button><br /><br />
-      <Button onClick={goCompanyInfo}>公司详情1</Button><br /><br />
+      <Spin spinning={pending}>
+        <Tree
+          checkable={checkable}
+          checkStrictly={checkStrictly}
+          onExpand={(expandedKeys) => { onExpand(expandedKeys) }}
+          draggable
+          expandedKeys={expandedKeys}
+          autoExpandParent={autoExpandParent}
+          onCheck={(data) => onCheck(data)}
+          checkedKeys={checkedKeys}
+          onSelect={(data) => onSelect(data)}
+          selectedKeys={selectedKeys}
+          treeData={treeData}
+        >
+        </Tree>
+        <Button onClick={goBack} type='primary'>返回</Button><br /><br />
+        <Button onClick={changeState} type='primary'>设置state里面的数据</Button><br /><br />
+        <Checkbox value={checkable} onChange={() => selectMore(!checkable)}>多机构选择</Checkbox><br /><br />
+        <Checkbox value={checkStrictly} onChange={() => toggleStrictly(!checkStrictly)}>包含下级</Checkbox><br />
+        <Button onClick={getState}>获取store里面的state</Button><br /><br />
+        <Button onClick={goCompanyInfo}>公司详情1</Button><br /><br />
+      </Spin>
     </div>
   );
 }
