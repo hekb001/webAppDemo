@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import { Link, browserHistory } from 'react-router';
-import { FormattedMessage } from 'react-intl';
 import { Button } from 'antd'
+import { FormattedMessage } from 'react-intl';
 import cookie from 'js-cookie';
 import '../assets/styles/index.less';
 const langType = cookie.get('langType');

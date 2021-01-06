@@ -1,19 +1,12 @@
-import React, { Component } from 'react';
-import store from '../../store/configureStore';
-import { Button } from 'antd';
-import {  browserHistory } from 'react-router';
+import React, { Component, useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-class CompanyInfo extends Component {
-componentDidMount(){
-    alert(JSON.stringify(store.getState()))
+export default function CompanyInfo (props) {
+  const asyncPayload = useSelector(state => state.home.asyncPayload) || [];
+  console.log(asyncPayload,'asyncPayload...')
+  return (
+    <div className='ml-5'>
+     公司详情页
+    </div>
+  );
 }
-  render() {
-    return (
-      <div className='ml-5'>
-       公司详情页
-      </div>
-    );
-  }
-}
-
-export default CompanyInfo;

@@ -1,7 +1,8 @@
 import React, { Component, useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button, Tree, Checkbox, Table, Divider } from 'antd';
 import store from '../../store/configureStore';
-import myaction from 'action';
+import {myaction,getAsyncData} from 'action/home.js';
 import { Link, browserHistory } from 'react-router';
 import './index.less';
 const treeData = [
@@ -49,27 +50,25 @@ const treeData = [
 ];
 
 export default function Home(props) {
-  const [newState, listerner] = useState(store.getState())
+  const asyncPayload = useSelector(state => state.home.asyncPayload) || [];
   const [expandedKeys, onExpand] = useState(['0-0-0', '0-0-1']);
   const [checkStrictly, toggleStrictly] = useState(true);
   const [checkable, selectMore] = useState(false);
   const [autoExpandParent] = useState(true);
   const [checkedKeys, onCheck] = useState([])
   const [selectedKeys, onSelect] = useState([])
+  const dispatch = useDispatch();
   const goBack = () => {
     browserHistory.goBack();
   }
   //获取state里面的数据
   const getState = () => {
-    console.log('inintState', store.getState())
+    console.log('asyncPayload',asyncPayload);
   }
   //修改state里面的数据
   const changeState = () => {
-    store.dispatch(myaction)
+    getAsyncData()(dispatch)
   }
-  useEffect(() => {
-    store.subscribe(listerner);
-  });
   //跳转公司详情页
   const goCompanyInfo = () => {
     browserHistory.push('/companyInfo');
@@ -92,7 +91,7 @@ export default function Home(props) {
       >
       </Tree>
       <Button onClick={goBack} type='primary'>返回</Button><br /><br />
-      <Button onClick={changeState} type='primary'>修改state里面的数据</Button><br /><br />
+      <Button onClick={changeState} type='primary'>设置state里面的数据</Button><br /><br />
       <Checkbox value={checkable} onChange={() => selectMore(!checkable)}>多机构选择</Checkbox><br /><br />
       <Checkbox value={checkStrictly} onChange={() => toggleStrictly(!checkStrictly)}>包含下级</Checkbox><br />
       <Button onClick={getState}>获取store里面的state</Button><br /><br />
