@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build:dll":"webpack --config webpack.dll.config.js",
     "build": "better-npm-run nodemon-build",
     "test1": "better-npm-run nodemon-test1",
     "test2": "better-npm-run nodemon-test2"
@@ -35,6 +36,7 @@
       "command": "webpack --config webpack.prod.js",
       "env": {
         "NODE_ENV": "production",
+        "NODE_TEST": "production",
         "ONLINE": 1,
         "DEBUG": 0
       }
@@ -82,6 +84,7 @@
     "terser-webpack-plugin": "^4.2.3",
     "url-loader": "^1.0.1",
     "webpack": "^4.43.0",
+    "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0",
     "webpack-manifest-plugin": "^2.0.0-rc.2",

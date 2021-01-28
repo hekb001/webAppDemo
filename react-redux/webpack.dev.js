@@ -3,7 +3,7 @@ const path = require('path');
 const merge = require('webpack-merge');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const base = require('./webpack.base.js');
-
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 function resolve (dir) {
     return path.join(__dirname, dir)
 }
@@ -31,6 +31,7 @@ module.exports = merge(base, {
         inline: true//实时刷新
     },
     plugins: [
+    new BundleAnalyzerPlugin({ analyzerPort: 9999 }),
     new webpack.NamedModulesPlugin(),
 	new webpack.HotModuleReplacementPlugin(),
     new OpenBrowserPlugin({ url: 'http://localhost:'+port }),
