@@ -7,6 +7,7 @@ module.exports={
 		'react-dom',
 		'react-router',
 		'redux',
+		'lodash',
 		'react-redux',] // 打包 react 和react-dom 在一个 代码块 react中
 	},
 	output:{
