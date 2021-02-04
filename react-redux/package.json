@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:dll":"webpack --config webpack.dll.config.js",
+    "build:dll":" better-npm-run nodemon-build-dll",
     "build": "better-npm-run nodemon-build",
     "test1": "better-npm-run nodemon-test1",
     "test2": "better-npm-run nodemon-test2"
@@ -15,7 +15,7 @@
   "license": "ISC",
   "betterScripts": {
     "nodemon-test1": {
-      "command": "node server && webpack-dev-server --config webpack.dev.js",
+      "command": "node server.js",
       "env": {
         "NODE_ENV": "dev",
         "NODE_TEST": "test1",
@@ -34,6 +34,15 @@
     },
     "nodemon-build": {
       "command": "webpack --config webpack.prod.js",
+      "env": {
+        "NODE_ENV": "production",
+        "NODE_TEST": "production",
+        "ONLINE": 1,
+        "DEBUG": 0
+      }
+    },
+    "nodemon-build-dll": {
+      "command": "webpack --config webpack.dll.config.js",
       "env": {
         "NODE_ENV": "production",
         "NODE_TEST": "production",
