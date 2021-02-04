@@ -31,9 +31,12 @@ module.exports = merge(base, {
         inline: true//实时刷新
     },
     plugins: [
-    new BundleAnalyzerPlugin({ analyzerPort: 9999 }),
-    new webpack.NamedModulesPlugin(),
-	new webpack.HotModuleReplacementPlugin(),
-    new OpenBrowserPlugin({ url: 'http://localhost:'+port }),
-    ],
+        new webpack.DllReferencePlugin({
+            manifest:path.resolve(__dirname,'./public','manifest.json')
+        }),
+        new BundleAnalyzerPlugin({ analyzerPort: 9999 }),
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new OpenBrowserPlugin({ url: 'http://localhost:'+port }),
+        ],
 });
