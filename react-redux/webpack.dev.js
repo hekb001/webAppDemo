@@ -11,10 +11,11 @@ function resolve (dir) {
 const port = 8081;
 
 module.exports = merge(base, {
+    mode:'development',
     output: {
         filename: 'static/js/[name].js', //
         path: resolve('dist'), // 输出的文件地址
-        publicPath: ''
+        publicPath: '/'
     },
     // devtool: 'inline-source-map',
     module: {
