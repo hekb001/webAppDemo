@@ -51,9 +51,6 @@ export default function CompanyInfo(props) {
   }
   return (
     <div className='ml-5'>
-      <div>
-        公司详情页
-     </div>
       <Upload
         onRemove={onRemove}
         beforeUpload={beforeUpload}

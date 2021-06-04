@@ -1,10 +1,11 @@
 import React, { Component, useState, useEffect } from 'react';
-import { Link, browserHistory } from 'react-router';
-import { Button } from 'antd'
+import { Link, browserHistory } from 'react-router-dom';
+import { Button,Layout } from 'antd'
 import { FormattedMessage } from 'react-intl';
 import cookie from 'js-cookie';
 import '../assets/styles/index.less';
 const langType = cookie.get('langType');
+const { Content, Footer, Sider } = Layout;
 export function Cat(props) {
   const { x, y } = props.mouse;
   console.log('%c'+ x,'color:green')
@@ -23,9 +24,9 @@ export function Mouse(props) {
     {props.render(clientInfo)}
   </div>)
 }
-export default function App() {
+export default function App(props) {
   const goHome = () => {
-    browserHistory.push('/home')
+    props.history.replace('/home')
   }
   //切换语言
   const changeLanguage = (type) => {
@@ -44,14 +45,15 @@ export default function App() {
         {/* 动态传值 */}
         <FormattedMessage id='home.item1' values={{ name: langType == '1' ? '何凯兵' : 'kevin' }} />
       </div>
-      <div onClick={goHome}>
+      {/* <div onClick={goHome}>
         <FormattedMessage id='home.item2' />
-      </div>
-      <Mouse render={(mouse)=>
+      </div> */}
+      <Link to={'/home'}>去home页</Link>
+      {/* <Mouse render={(mouse)=>
         <Cat mouse={mouse}/>
       }>
 
-      </Mouse>
+      </Mouse> */}
     </div>
   );
 }

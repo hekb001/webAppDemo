@@ -1,9 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button, Tree, Checkbox, Table, Divider,Spin } from 'antd';
-import store from '../../store/configureStore';
 import {myaction,getAsyncData} from 'action/home.js';
-import { Link, browserHistory } from 'react-router';
 import './index.less';
 const treeData = [
   {
@@ -60,7 +58,7 @@ export default function Home(props) {
   const [selectedKeys, onSelect] = useState([])
   const dispatch = useDispatch();
   const goBack = () => {
-    browserHistory.goBack();
+    props.history.push('/');
   }
   //获取state里面的数据
   const getState = () => {
@@ -73,11 +71,10 @@ export default function Home(props) {
   }
   //跳转公司详情页
   const goCompanyInfo = () => {
-    browserHistory.push('/companyInfo');
+    props.history.push('/companyInfo')
   }
   return (
     <div className="App">
-      <div className='ml-5'>主页</div>
       <Spin spinning={pending}>
         <Tree
           checkable={checkable}
@@ -93,7 +90,7 @@ export default function Home(props) {
           treeData={treeData}
         >
         </Tree>
-        <Button onClick={goBack} type='primary'>返回</Button><br /><br />
+        <Button onClick={goBack} type='primary'>回到主页</Button><br /><br />
         <Button onClick={changeState} type='primary'>设置state里面的数据</Button><br /><br />
         <Checkbox value={checkable} onChange={() => selectMore(!checkable)}>多机构选择</Checkbox><br /><br />
         <Checkbox value={checkStrictly} onChange={() => toggleStrictly(!checkStrictly)}>包含下级</Checkbox><br />
