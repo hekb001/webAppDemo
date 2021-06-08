@@ -23,6 +23,9 @@ function resolve(dir) {
     return path.join(__dirname, dir)
 }
 const prodConfig = merge(base, {
+    performance: {
+        hints:false
+    },
     output: {
         filename: '[hash:8].[name].js',
 		chunkFilename: '[hash:8].[name].js',
