@@ -1,12 +1,17 @@
 import React, { Component, useState, useEffect } from 'react';
-import { Upload, Icon, Button } from 'antd';
+import { Upload, Icon, Button,Row } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
-
+import Parent from 'components/Parent';
+import ParentObj from 'components/ParentObj';
 export default function CompanyInfo(props) {
   const asyncPayload = useSelector(state => state.home.asyncPayload) || [];
   const [uploading, setUploading] = useState(false);
   const [fileList, setFileList] = useState([]);
   console.log(asyncPayload, 'asyncPayload...');
+  const styleInfo={
+    gutter:[16,16],
+    span:6
+  }
   const onRemove = (file) => {
     const index = fileList.indexOf(file);
     const newFileList = fileList.slice();
@@ -67,6 +72,15 @@ export default function CompanyInfo(props) {
       >
         {uploading ? 'Uploading' : 'Start Upload'}
       </Button>
+      <Parent>
+        {props.children}
+      </Parent>
+      <div>
+        <ParentObj {...styleInfo}>
+         <span>hello</span>
+         <span>world</span>
+        </ParentObj>
+      </div>
     </div>
   );
 }

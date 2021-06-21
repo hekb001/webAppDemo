@@ -9,7 +9,7 @@ export default () => (
     <Router >
         <Switch>
             <Route>
-                {/* <Route path='/app' component={App}></Route> */}
+                <Route path='/' component={App}></Route>
                 {HomeRoute()}
                 {CompanyInfoRoute()}
             </Route>

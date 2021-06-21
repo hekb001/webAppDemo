@@ -52,7 +52,6 @@ export default function App(props) {
       {/* <Mouse render={(mouse)=>
         <Cat mouse={mouse}/>
       }>
-
       </Mouse> */}
     </div>
   );
