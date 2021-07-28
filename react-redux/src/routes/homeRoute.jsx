@@ -2,7 +2,6 @@ import React from 'react';
 import { Route } from 'react-router-dom'
 import { getAsyncComponent } from 'utils'
 const Home = () => import('../views/Home');
-// import Home from '../views/Home';
 
 export default () => (
     <Route>
