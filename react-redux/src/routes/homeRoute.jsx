@@ -4,7 +4,8 @@ import { getAsyncComponent } from 'utils'
 const Home = () => import('../views/Home');
 
 export default () => (
-    <Route>
-        <Route path='/home' component={getAsyncComponent(Home)}></Route>
+    <Route
+        path='/home'
+        component={getAsyncComponent(Home,'1','2')}>
     </Route>
 )

@@ -1,4 +1,5 @@
-import React, {useEffect } from 'react';
+import React, {useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Layout, Menu, Breadcrumb  } from 'antd'
 import { Link, browserHistory } from 'react-router-dom';
 import { UserOutlined, LaptopOutlined, NotificationOutlined } from '@ant-design/icons';
@@ -7,8 +8,9 @@ import '../assets/styles/index.less';
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 export default function App(props) {
+  const sideBarObj = useSelector(state => state.app.sideBarObj) || {};
   useEffect(() => {
-    console.log(props,'props......')
+    console.log(sideBarObj,'sideBarObj......')
   });
   const { children } = props;
  

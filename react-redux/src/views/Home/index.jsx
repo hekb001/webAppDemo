@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Button, Tree, Checkbox, Table, Divider, Spin } from 'antd';
 import { myaction, getAsyncData } from 'action/home';
 import { FormattedMessage } from 'react-intl';
-import { Link, browserHistory } from 'react-router-dom';
+import { changeSideBar } from 'action/app';
 import cookie from 'js-cookie';
 import './index.less';
 const langType = cookie.get('langType');
@@ -104,6 +104,7 @@ export default function Home(props) {
   }
   useEffect(() => {
     console.log(props,'props......')
+    changeSideBar(props)(dispatch)
   });
   return (
     <div className="App">
