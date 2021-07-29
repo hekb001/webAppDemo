@@ -1,11 +1,13 @@
 import React from 'react';
 import { Route } from 'react-router-dom'
 import { getAsyncComponent } from 'utils'
+import { UserAuthWrapper } from 'components/AuthCert';
 const Home = () => import('../views/Home');
+const Componet = getAsyncComponent(Home,'1','2');
 
 export default () => (
     <Route
         path='/home'
-        component={getAsyncComponent(Home,'1','2')}>
+        component={UserAuthWrapper(Componet,'12')}>
     </Route>
 )
