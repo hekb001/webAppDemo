@@ -1,0 +1,33 @@
+
+@keyframes play {   
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes replay {
+    to {
+        width: 100%;
+    }
+}
+
+.container {
+    height: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.progress {
+    height: 100%;
+    width: 0;
+    background-color: red;
+    animation-timing-function: linear;
+}
+
+.progress.play {     /* 使animation动画启动 */
+    animation-play-state: running;
+}
+
+.progress.pause {    /* 使animation动画暂停 */
+    animation-play-state: paused;
+}

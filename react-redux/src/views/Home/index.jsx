@@ -52,8 +52,8 @@ const treeData = [
 ];
 export function Cat(props) {
   const { x, y } = props.mouse;
-  console.log('%c'+ x,'color:green')
-  console.log('%c'+ y,'color:green')
+  console.log('%c' + x, 'color:green')
+  console.log('%c' + y, 'color:green')
   return (<div style={{ position: 'absolute', left: x, top: y }}>kevin</div>)
 }
 export function Mouse(props) {
@@ -64,7 +64,7 @@ export function Mouse(props) {
       y: event.clientY
     })
   }
-  return (<div style={{ height: '100vh' }} onMouseMove={(event)=>handleMouseMove(event)}>
+  return (<div style={{ height: '100vh' }} onMouseMove={(event) => handleMouseMove(event)}>
     {props.render(clientInfo)}
   </div>)
 }
@@ -94,8 +94,8 @@ export default function Home(props) {
   const goCompanyInfo = () => {
     props.history.push('/companyInfo')
   }
-   //切换语言
-   const changeLanguage = (type) => {
+  //切换语言
+  const changeLanguage = (type) => {
     cookie.set('langType', type)
     location.reload();
   }
@@ -103,7 +103,7 @@ export default function Home(props) {
     props.history.replace('/home')
   }
   useEffect(() => {
-    console.log(props,'props......')
+    console.log(props, 'props......')
     changeSideBar(props)(dispatch)
   });
   return (
@@ -118,8 +118,8 @@ export default function Home(props) {
           <FormattedMessage id='home.item1' values={{ name: langType == '1' ? '何凯兵' : 'kevin' }} />
         </div>
         <div onClick={goHome}>
-       <FormattedMessage id='home.item2' />
-      </div>
+          <FormattedMessage id='home.item2' />
+        </div>
         {/* <Link to={'/home'}>去home页</Link> */}
         {/* <Mouse render={(mouse)=>
        <Cat mouse={mouse}/>
@@ -143,8 +143,18 @@ export default function Home(props) {
         </Tree>
         <Button onClick={goBack} type='primary'>公司详情页</Button><br /><br />
         <Button onClick={changeState} type='primary'>设置state里面的数据</Button><br /><br />
-        <Checkbox value={checkable} onChange={() => selectMore(!checkable)}>多机构选择</Checkbox><br /><br />
-        <Checkbox value={checkStrictly} onChange={() => toggleStrictly(!checkStrictly)}>包含下级</Checkbox><br />
+        <Checkbox
+          value={checkable}
+          onChange={() => selectMore(!checkable)}>
+          多机构选择
+        </Checkbox>
+        <br /><br />
+        <Checkbox
+          value={checkStrictly}
+          onChange={() => toggleStrictly(!checkStrictly)}>
+          包含下级
+        </Checkbox>
+        <br />
         <Button onClick={getState}>获取store里面的state</Button><br /><br />
         <Button onClick={goCompanyInfo}>公司详情1</Button><br /><br />
       </Spin>

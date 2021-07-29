@@ -1,0 +1,41 @@
+@keyframes play {     /* 通过transform来启用GPU加速，跳过重排重绘阶段 */
+    0% {  
+        transform: translateX(-50%) scaleX(0);  /* 用 scaleX 来代替 width */
+    }
+
+    to {
+        transform: translateX(0) scaleX(1);
+    }
+}
+
+@keyframes replay {
+    0% {
+        transform: translateX(-50%) scaleX(0);
+    }
+
+    to {
+        transform: translateX(0) scaleX(1);
+    }
+}
+
+.container {
+    height: 10px;
+    border-radius: 5px;
+    border: 1px solid black;
+}
+
+.progress {
+    height: 100%;
+    width: 100%;   /* 初始宽度为100%，因为我们要对其缩放 */
+    background-color: red;
+    will-change: transform;   /* 通过will-change告知浏览器提前做好优化准备 */
+    animation-timing-function: linear;
+}
+
+.progress.play {    
+    animation-play-state: running;
+}
+
+.progress.pause {   
+    animation-play-state: paused;
+}

@@ -3,6 +3,7 @@ import { HashRouter as Router, Redirect, Switch, Route } from 'react-router-dom'
 import Home from '../views/Home';
 import HomeRoute from './homeRoute';
 import CompanyInfoRoute from './companyInfoRoute';
+import progressBarRoute from './progressBar';
 
 import App from '../views/App';
 const Error=()=>(
@@ -17,6 +18,7 @@ export default () => (
                 <App>
                     {HomeRoute()}
                     {CompanyInfoRoute()}
+                    {progressBarRoute()}
                 </App>
             </Route>
         </Switch>
