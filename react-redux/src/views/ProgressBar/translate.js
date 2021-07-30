@@ -1,4 +1,6 @@
 import React, { useEffect,useState } from 'react';
+import { Button } from 'antd';
+import {AuthButton} from 'components/AuthCert/authElement' 
 import './tanslate.less'
 
 let totalTime = 3000  // 假设视频播放为3s
@@ -25,8 +27,9 @@ export default function Tanslate() {
     
     return (
         <div id="root">
-            <button onClick={handleVideo}>{ isPlay ? '暂停' : '播放' }</button>
-            <button onClick={replay}>重播</button>
+            {/* <Button onClick={handleVideo}></Button> */}
+            <AuthButton auth={'11'} style={{color:'red'}} type='primary'>{ isPlay ? '暂停' : '播放' }</AuthButton>
+            <Button onClick={replay}>重播</Button>
             <span>{ `播放次数为：${count}` }</span>
             <div className="container">
                 <div 

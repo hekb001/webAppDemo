@@ -28,3 +28,15 @@ export function getAsyncComponent(
     }
   };
 }
+export function splitObj(obj, arr) {
+  let left = {};
+  let right = {};
+  Object.keys(obj).map((key) => {
+    if (arr.indexOf(key) >= 0) {
+      left[key] = obj[key];
+    } else {
+      right[key] =  obj[key]
+    }
+  })
+  return [left, right];
+}
