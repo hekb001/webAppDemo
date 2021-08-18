@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组排序</title>
+</head>
+
+<body>
+    <h2 style='color:red'>1.经典的冒泡排序</h2>
+    <h2 style='color:green'>2.原生js自带sort排序传入比较器函数compare</h2>
+    <h2 style='color:red'>3.二叉树排序</h2>
+    <h2 style='color:green'>4.数组拆分left,center,right递归排序</h2>
+    <h2 style='color:red'>5.遍历数组每次取最小值、最大值排序递归排序</h2>
+</body>
+<script>
+    // ①冒泡排序---start------
+    // 外层循环嵌套内层循环,外层循环1次，内层循环n-1次
+    // 内层循环将当前值与外层循环值做对比，如外层值大于内层当前值，将内层值与外层值替换，循环结束找出最小值放在数组第一位
+    var arr = [9, 8, 7, 6, 5, 4, 3, 2, 1];
+    function bubbleSort(arr) {
+        for (var i = 0; i < arr.length; i++) {
+            for (var j = i + 1; j < arr.length; j++) {
+                if (arr[i] > arr[j]) {
+                    var temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+            }
+        }
+        console.log(arr, 'arr....')
+    }
+    bubbleSort(arr);
+    // 冒泡排序---end------
+    //原生js排序---start------
+    var arrInfo = [{ name: 'kevin', age: 10 }, { name: 'kevin1', age: 9 }, { name: 'kevin2', age: 8 }, { name: 'kevin3', age: 7 }, { name: 'kevin4', age: 6 }, { name: 'kevin5', age: 5 }];
+    function sortArray() {
+        return arrInfo.sort((a, b) => a.age - b.age)
+    };
+    console.log(sortArray(arrInfo), 'arrInfo....');
+    //原生js排序---end------
+    //二叉树排序---start------
+    //①生成二叉树
+    //②使用中序遍历二叉树
+    function Node(data,left,right){
+        this.data = data;
+        this.left = left;
+        this.right = right;
+    }
+    //写法①
+    function banaryTree2(data){
+        var roots = null;
+        var node = new Node(data,null,null);
+        if(!this.roots){
+            this.roots = node
+        }else{
+            var current = this.roots;
+            while(true){
+                var parent = current;
+                if(data<parent.data){
+                    current=current.left;
+                    if(!current){
+                        parent.left = node;
+                        break;
+                    }
+                }else{
+                    current=current.right;
+                    if(!current){
+                        parent.right = node;
+                        break;
+                    }
+                }
+            }
+        }
+        return this.roots
+    }
+    //二叉树构造函数写法①
+    function BanaryTree(){
+        function insertNode(node,newNode){
+            if(newNode.data < node.data){
+                if(!node.left){
+                    node.left = newNode
+                }else{
+                    insertNode(node.left,newNode)
+                }
+            }else{
+                if(!node.right){
+                    node.right = newNode
+                }else{
+                    insertNode(node.right,newNode)
+                }
+            }
+        }
+        this.root=null;
+        this.insert=function(data){
+            if(!this.root){
+                this.root = new Node(data,null,null)
+            }else{
+                var node =new Node(data)
+                insertNode(this.root,node)
+            }
+        }
+    }
+    var arr1 = [9, 81, 72, 6, 54, 48, 3, 27, 1];
+    var banaryTree = new BanaryTree();
+    arr1.forEach((num)=>{
+        banaryTree.insert(num)
+    });
+    console.log(banaryTree.root,'banaryTree.root...')
+    function inorderSort(node){
+        if(!node){
+            return 
+        }
+        inorderSort(node.left)
+        console.log(node.data,'node.data...')
+        inorderSort(node.right)
+    }
+    inorderSort(banaryTree.root);
+    // 二叉树排序---end------
+    // 数组拆分left,center,right递归排序---start------
+    function quickSort(arr){
+        if(arr.length<=1){
+            return arr
+        }
+        var left=[],right=[];
+        var centerIndex = Math.floor(arr.length/2);
+        var centerVal = arr[centerIndex];
+        arr.splice(centerIndex,1);
+        for(var i=0;i<arr.length;i++){
+            if(arr[i]<=centerVal){
+                left.push(arr[i])
+            }else{
+                right.push(arr[i])
+            }
+        }
+        return quickSort(left).concat(centerVal,quickSort(right))
+    };
+    console.log(quickSort(arr),'quickSort(arr)')
+    console.log(arr,'arr.....')
+    // 数组拆分left,center,right递归排序---end------
+    // 遍历数组每次取最小值、最大值排序递归排序---strat------
+    function sortByeveryMin(arr){
+        var newArr = [];
+        while(true){
+            if(arr.length==0){
+                return newArr
+            }
+            var arrMinVal = Math.min.apply(null,arr);
+            var arrMinIndex =arr.indexOf(arrMinVal);
+            newArr.push(arrMinVal);
+            arr.splice(arrMinIndex,1);
+        }
+    }
+    console.log(sortByeveryMin(arr1),'sortByeveryMin(arr);')
+</script>
+</html>
