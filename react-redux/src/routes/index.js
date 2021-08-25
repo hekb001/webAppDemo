@@ -4,6 +4,7 @@ import Home from '../views/Home';
 import HomeRoute from './homeRoute';
 import CompanyInfoRoute from './companyInfoRoute';
 import progressBarRoute from './progressBar';
+import CustomIconRoute from './customIcon';
 
 import App from '../views/App';
 const Error=()=>(
@@ -19,6 +20,7 @@ export default () => (
                     {HomeRoute()}
                     {CompanyInfoRoute()}
                     {progressBarRoute()}
+                    {CustomIconRoute()}
                 </App>
             </Route>
         </Switch>

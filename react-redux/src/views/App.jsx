@@ -28,6 +28,9 @@ export default function App(props) {
           <Menu.Item key="3">
             <Link to='/progressBar'> 进度条</Link>
           </Menu.Item>
+          <Menu.Item key="4">
+            <Link to='/customIcon'>自定义图标</Link>
+          </Menu.Item>
         </Menu>
       </Header>
       <Content style={{ padding: '0 5px' }}>
