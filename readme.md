@@ -12,10 +12,10 @@
     7.for 比较continue，break，return<br/>
     8.hightFun 高阶函数<br/>
     9.prototype js原型，继承，函数方式继承，对象方式继承<br/>
-    10.asyncAwait 异步函数的实现方式
-    11.underscore 抖动与截流
-    12.arrSort 数组冒泡排序，二叉树排序，compare排序，left、center、right排序
-    13.imgbase64Upload js实现对图片的压缩上传
+    10.asyncAwait 异步函数的实现方式<br/>
+    11.underscore 抖动与截流<br/>
+    12.arrSort 数组冒泡排序，二叉树排序，compare排序，left、center、right排序<br/>
+    13.imgbase64Upload js实现对图片的压缩上传<br/>
     <h2 style="color:green">reacDemo</h2>
     antd 蚂蚁金服组件案例<br/>
     antd- mydalist明源云面试题<br/>
