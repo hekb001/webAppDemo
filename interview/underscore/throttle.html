@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>节流</title>
+</head>
+
+<body>
+    <div style='color:green'>
+        <div style='width:100%;height:100px;background-color: #ddd;text-align: center;font-size: 26px;line-height: 100px;'
+            id='text'></div>
+        <h2>1.js节流</h2>
+        <h3>（1）当持续触发事件时，函数会规定时间内去执行，减少重复执行，按照自己设定的频率去执行</h2>
+    </div>
+</body>
+<script>
+    var content = document.getElementById('text');
+    var num = 0, timerout = '';
+    const renderText = () => {
+        content.innerHTML = num++;
+    }
+    const throttle = (fn, wait) => {
+        return () => {
+            if (!timerout) {
+                timerout = setTimeout(() => {
+                    fn()
+                    timerout = null
+                }, wait)
+            }
+        }
+    }
+    content.onmousemove = throttle(renderText, 1000)
+</script>
+
+</html>

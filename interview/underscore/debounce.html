@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js防抖动</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+
+<body>
+    <div style='color:green'>
+        <div style='width:100%;height:100px;background-color: #ddd;text-align: center;font-size: 26px;line-height: 100px;'
+            id='text'></div>
+        <h2>1.js防抖动-非立即执行版</h2>
+        <h3>（1）当持续触发事件时，函数会规定时间内延迟执行，如果期间用户在规定时间内持续触发事件，则重新计算函数待执行时间</h2>
+            <h3>（2）如果期间用户在规定时间内没有触发事件，则会重新调用</h2>
+    </div>
+    <div style='color:red'>
+        <div style='width:100%;height:100px;background-color: #ddd;text-align: center;font-size: 26px;line-height: 100px;'
+            id='text1'></div>
+        <h2>2.js防抖动-立即执行版</h2>
+        <h3>（1）当持续触发事件时，函数会立刻执行，如果期间用户在规定时间内持续触发事件，则重新计算函数待执行时间</h2>
+            <h3>（2）如果期间用户在规定时间内没有触发事件，则会重新调用</h2>
+    </div>
+    <script>
+        // 1.js防抖动-非立即执行版
+        var content = document.getElementById('text');
+        var content1 = document.getElementById('text1');
+        var num = 0;
+        var num1 = 0;
+        const renderText = (type) => {
+            var _content = type == '1' ? content : content1;
+            _content.innerHTML = type == '1' ? num++ : num1++;
+        }
+        const debounce = (fn, wait) => {
+            let timeout = '';
+            return function () {
+                if (timeout) {
+                    //用户在规定时间内一直在操作，定时器一直清除->生成（定时器需要1秒过后执行，来不及执行，生成已经被清除了）
+                    // 无法执行fn回调，形成防抖
+                    //用户在规定时间内没有再操作，定时器重新执行，执行fn
+                    clearTimeout(timeout)
+                }
+                timeout = setTimeout(() => {
+                    fn('1')
+                }, wait)
+            }
+        }
+        content.onmousemove = debounce(renderText, 1000);
+        // 2.js防抖动-立即执行版
+        const debounce1 = (fn, wait) => {
+            let timeout1 = '', callNow = false;
+            return function () {
+                if (timeout1) {
+                    //因为用户在规定时间内一直在操作，定时器一直在清除->生成，无法执行定时器，timeout1 无法 为null;
+                    // callNow无法为true,无法执行fn,形成防抖
+                    //用户松开操作，定时器执行，callNow为true,执行fn,防止防抖
+                    clearTimeout(timeout1)
+                }
+                callNow = !timeout1;
+                timeout1 = setTimeout(() => {
+                    timeout1 = null
+                }, wait)
+                if (callNow) {
+                    fn('2')
+                }
+            }
+        }
+        content1.onmousemove = debounce1(renderText, 1000);
+    </script>
+</body>
+
+</html>

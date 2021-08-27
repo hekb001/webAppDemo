@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>阻止重复点击</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+</head>
+<body>
+    <div>
+        <h2>
+            <div>1.阻止按钮重复点击，与无效点击</div>
+            <div>(1).设定时间，点击后置灰，n秒内恢复</div>
+            <div>(2).设定提醒，n秒内不允许重复点击</div>
+            <button onclick="clickMe()" id='btn'>点击我</button>
+        </h2>
+    </div>
+</body>
+<script>
+    // 阻止按钮重复点击
+    let flag = true;
+    // 方法一，设定时间，点击后置灰，n秒内恢复
+    // function clickMe(){
+    //     $('#btn').attr({"disabled":"disabled"});
+    //     let timer=setTimeout(()=>{
+    //         if(timer){
+    //             clearTimeout(timer);
+    //         }
+    //         $('#btn').removeAttr("disabled");
+    //     },2000)
+    // }
+      //方法二，设定提醒，n秒内不允许重复点击
+      function clickMe(){
+        if(!flag){
+            alert('4秒之内不允许重复点击');
+            return
+        }
+        flag = false;
+        let timer=setTimeout(()=>{
+            if(timer){
+                clearTimeout(timer)
+            }
+            flag = true; 
+        },4000)
+    }
+</script>
+</html>
