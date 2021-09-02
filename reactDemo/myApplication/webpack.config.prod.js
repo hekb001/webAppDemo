@@ -2,7 +2,7 @@
  * @Author: kevin.he 
  * @Date: 2021-09-01 16:56:05 
  * @Last Modified by: kevin.he
- * @Last Modified time: 2021-09-01 17:02:43
+ * @Last Modified time: 2021-09-02 17:48:05
  */
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -12,6 +12,7 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 const TerserPluginer = new TerserPlugin({
+    extractComments: false,//不将注释提取到单独的文件中,去掉.LICENSE.txt文件
     parallel: true,
     terserOptions: {
       compress: {
@@ -45,7 +46,7 @@ module.exports = {
       favicon: path.join(__dirname, 'public/favicon.ico'),
       template: 'public/index.html',
       filename: 'index.ejs',
-      inject: true
+      inject: true,
     }),
     new MiniCssExtractPlugin({
         filename: '[hash:8].[name].css',

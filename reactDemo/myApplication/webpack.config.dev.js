@@ -21,11 +21,17 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      }
+    }),
     new HtmlWebPackPlugin({
       favicon: path.join(__dirname, 'public/favicon.ico'),
       template: 'public/index.html',
       filename: 'index.ejs',
-      inject: true
+      config: 'window.config = <%- __CONFIG__ %>',
+      inject: true,
     })
   ],
   module: {

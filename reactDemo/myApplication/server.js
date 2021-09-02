@@ -24,7 +24,7 @@ if(!isProduction){
     app.set('view engine', 'ejs')
 }
 app.get('/',(req,res)=>{
-  res.render('index')
+  res.render('index',{ __CONFIG__: JSON.stringify(process.env.NODE_ENV) })
 })
 app.listen('8081', function() {
     console.log('服务器启动')
