@@ -2,7 +2,7 @@
  * @Author: kevin.he 
  * @Date: 2021-09-01 16:56:05 
  * @Last Modified by: kevin.he
- * @Last Modified time: 2021-09-02 17:48:05
+ * @Last Modified time: 2021-09-02 18:34:54
  */
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
@@ -46,6 +46,7 @@ module.exports = {
       favicon: path.join(__dirname, 'public/favicon.ico'),
       template: 'public/index.html',
       filename: 'index.ejs',
+      config: `window.config = <%- __CONFIG__ %>`,
       inject: true,
     }),
     new MiniCssExtractPlugin({
