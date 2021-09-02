@@ -16,29 +16,29 @@ let webpackPlugin = [
         to: "",
         force: true
     }]),
-    new HtmlWebpackPlugin({
-        filename: 'index.html',//输出的html路径
-        template: './public/index.html', //html模板路径
-        minify: {
-            removeComments: true,
-            collapseWhitespace: true,
-            removeRedundantAttributes: true,
-            useShortDoctype: true,
-            removeEmptyAttributes: true,
-            removeStyleLinkTypeAttributes: true,
-            keepClosingSlash: true,
-            minifyCSS: true,
-            minifyJS: true,
-            minifyURLs: true,
-        }
-    }),
+    // new HtmlWebpackPlugin({
+    //     filename: 'index.html',//输出的html路径
+    //     template: './public/index.html', //html模板路径
+    //     minify: {
+    //         removeComments: true,
+    //         collapseWhitespace: true,
+    //         removeRedundantAttributes: true,
+    //         useShortDoctype: true,
+    //         removeEmptyAttributes: true,
+    //         removeStyleLinkTypeAttributes: true,
+    //         keepClosingSlash: true,
+    //         minifyCSS: true,
+    //         minifyJS: true,
+    //         minifyURLs: true,
+    //     }
+    // }),
     new webpack.DefinePlugin({
         'process.env': JSON.stringify(processEnv)
     }),
     new webpack.HashedModuleIdsPlugin(), // 修复vendor hash
 ]
 //生产环境打包先清理dist
-process.env.NODE_ENV == 'production' && webpackPlugin.unshift(new CleanWebpackPlugin(['dist']))
+process.env.NODE_ENV == 'production' && webpackPlugin.unshift(new CleanWebpackPlugin(['dist']));
 module.exports = {
     entry: {
         app: './src/index.js',

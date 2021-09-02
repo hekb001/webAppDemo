@@ -14,7 +14,7 @@ module.exports = merge(base, {
     mode:'development',
     output: {
         filename: 'static/js/[name].js', //
-        path: resolve('dist'), // 输出的文件地址
+        path: resolve('public'), // 输出的文件地址
         publicPath: '/'
     },
     // devtool: 'inline-source-map',
@@ -24,12 +24,25 @@ module.exports = merge(base, {
         extensions:['.js','.jsx'],
         modules:[path.resolve(__dirname,'src'),'node_modules']
     },
+    //devServer配置项不能与htmlwebpackPlugin共存，只能配置其中一种
     devServer: {
-        contentBase: './dist',
+        contentBase: path.resolve(__dirname,'public'),
+        index:'index.html',
         compress: true,
         port: port,
         historyApiFallback: true,//不跳转
-        inline: true//实时刷新
+        inline: true,//实时刷新
+        proxy: {
+            "/": {
+              target: "http://localhost:8081",
+              bypass: function(req, res, proxyOptions) {
+                if (req.headers.accept.indexOf("html") !== -1) {
+                  console.log("Skipping proxy for browser request.");
+                  return "/index.html";
+                }
+              }
+            }
+          }
     },
     plugins: [
         new webpack.DllReferencePlugin({
