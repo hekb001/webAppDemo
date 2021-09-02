@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{W8VN:function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.default=function(e){(0,c.useSelector)((function(e){return e.home.asyncPayload}));return o.default.createElement("div",{className:"ml-5"},"公司详情页")};var u,a=n("q1tI"),o=(u=a)&&u.__esModule?u:{default:u},c=n("/MKj")}}]);
