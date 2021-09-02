@@ -16,22 +16,22 @@ let webpackPlugin = [
         to: "",
         force: true
     }]),
-    // new HtmlWebpackPlugin({
-    //     filename: 'index.html',//输出的html路径
-    //     template: './public/index.html', //html模板路径
-    //     minify: {
-    //         removeComments: true,
-    //         collapseWhitespace: true,
-    //         removeRedundantAttributes: true,
-    //         useShortDoctype: true,
-    //         removeEmptyAttributes: true,
-    //         removeStyleLinkTypeAttributes: true,
-    //         keepClosingSlash: true,
-    //         minifyCSS: true,
-    //         minifyJS: true,
-    //         minifyURLs: true,
-    //     }
-    // }),
+    new HtmlWebpackPlugin({
+        filename: 'index.html',//输出的html路径
+        template: './public/index.html', //html模板路径
+        minify: {
+            removeComments: true,
+            collapseWhitespace: true,
+            removeRedundantAttributes: true,
+            useShortDoctype: true,
+            removeEmptyAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            keepClosingSlash: true,
+            minifyCSS: true,
+            minifyJS: true,
+            minifyURLs: true,
+        }
+    }),
     new webpack.DefinePlugin({
         'process.env': JSON.stringify(processEnv)
     }),
