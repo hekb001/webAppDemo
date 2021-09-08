@@ -7,7 +7,7 @@ import progressBarRoute from './progressBar';
 import CustomIconRoute from './customIcon';
 
 import App from '../views/App';
-const Error=()=>(
+const Error = () => (
     <div>出错了</div>
 )
 export default () => (
@@ -15,9 +15,9 @@ export default () => (
         <Switch>
             <Redirect exact from="/" to={"/home"} />
             <Route path='/error' component={Error}></Route>
+            {HomeRoute()}
             <Route>
                 <App>
-                    {HomeRoute()}
                     {CompanyInfoRoute()}
                     {progressBarRoute()}
                     {CustomIconRoute()}

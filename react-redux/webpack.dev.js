@@ -14,7 +14,7 @@ module.exports = merge(base, {
   mode: 'development',
   output: {
     filename: '[name].js', //
-    path: resolve('publicx'), // 输出的文件地址
+    path: resolve('public'), // 输出的文件地址
     publicPath: '/'
   },
   devtool: 'inline-source-map',
@@ -32,17 +32,19 @@ module.exports = merge(base, {
   //   port: port,
   //   historyApiFallback: true,//不跳转
   //   inline: true,//实时刷新
-  //   proxy: {
-  //     "/": {
-  //       target: "http://localhost:8081",
-  //       bypass: function (req, res, proxyOptions) {
-  //         if (req.headers.accept.indexOf("html") !== -1) {
-  //           console.log("Skipping proxy for browser request.");
-  //           return "/index.html";
-  //         }
-  //       }
-  //     }
-  //   }
+  //   disableHostCheck: true,
+  //   host:'http://saasadmin.react.mila66.com',
+  //   // proxy: {
+  //   //   "/": {
+  //   //     target: "http://localhost:8081",
+  //   //     bypass: function (req, res, proxyOptions) {
+  //   //       if (req.headers.accept.indexOf("html") !== -1) {
+  //   //         console.log("Skipping proxy for browser request.");
+  //   //         return "/index.html";
+  //   //       }
+  //   //     }
+  //   //   }
+  //   // }
   // },
   plugins: [
     new webpack.DllReferencePlugin({

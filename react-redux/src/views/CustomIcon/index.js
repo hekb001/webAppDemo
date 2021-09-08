@@ -2,11 +2,12 @@
  * @Author: kevin.he 
  * @Date: 2021-08-25 10:17:38 
  * @Last Modified by: kevin.he
- * @Last Modified time: 2021-08-25 11:40:20
+ * @Last Modified time: 2021-09-08 17:12:39
  */
 import React, { Component, useState, useEffect } from 'react';
 import { Divider, Skeleton, List, Avatar } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
+import { changeSideBar } from 'action/app';
 import Svg from 'components/Icon/Svg';
 let timer = null;
 const data = [
@@ -55,7 +56,9 @@ const data = [
 ];
 export default function CustomIcon(props) {
     const [loading, setLoading] = useState(true);
+    const dispatch = useDispatch();
     useEffect(() => {
+        changeSideBar(props)(dispatch)
         timer = setTimeout(() => {
             if (timer) {
                 window.clearTimeout(timer)
