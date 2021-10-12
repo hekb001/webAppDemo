@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Button, Tree, Checkbox, Table, Divider, Spin, Layout, Menu } from 'antd';
+import { Button, Tree, Checkbox, Table, Divider, Spin, Layout, Menu, Row, Col } from 'antd';
+import { DownOutlined } from '@ant-design/icons';
 import { myaction, getAsyncData } from 'action/home';
 import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
@@ -112,20 +113,30 @@ export default function Home(props) {
     <Layout>
       <Header className="header">
         <div className="logo" />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
-          <Menu.Item key="1">
-            <Link to='/home'>首页</Link>
-          </Menu.Item>
-          <Menu.Item key="2">
-            <Link to='/companyInfo'>公司详情</Link>
-          </Menu.Item>
-          <Menu.Item key="3">
-            <Link to='/progressBar'> 进度条</Link>
-          </Menu.Item>
-          <Menu.Item key="4">
-            <Link to='/customIcon'>自定义图标</Link>
-          </Menu.Item>
-        </Menu>
+        <Row>
+          <Col span={22}>
+            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
+              <Menu.Item key="1">
+                <Link to='/home'>首页</Link>
+              </Menu.Item>
+              <Menu.Item key="2">
+                <Link to='/companyInfo'>公司详情</Link>
+              </Menu.Item>
+              <Menu.Item key="3">
+                <Link to='/progressBar'> 进度条</Link>
+              </Menu.Item>
+              <Menu.Item key="4">
+                <Link to='/customIcon'>自定义图标</Link>
+              </Menu.Item>
+            </Menu>
+          </Col>
+          <Col span={2}>
+            <div className='user-info'>
+              <span className='mr-5'>kevin.he</span>
+              <DownOutlined className='user-icon'/>
+            </div>
+          </Col>
+        </Row>
       </Header>
       <Content style={{ padding: '0 5px' }}>
         <div className="App">

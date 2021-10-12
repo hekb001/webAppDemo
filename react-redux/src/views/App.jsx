@@ -22,7 +22,7 @@ export default function App(props) {
     <Layout>
       <Header className="header">
         <Row>
-          <Col span={21}>
+          <Col span={22}>
             <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']} selectedKeys={[`${sideBarObj.currentKeyProps}`]}>
               <Menu.Item key="1">
                 <Link to='/home'>首页</Link>
@@ -38,7 +38,7 @@ export default function App(props) {
               </Menu.Item>
             </Menu>
           </Col>
-          <Col span={3}>
+          <Col span={2}>
             <Dropdown overlay={userMenu}>
               <span style={{ marginLeft: 15, marginRight: 15 }}>
                 更多

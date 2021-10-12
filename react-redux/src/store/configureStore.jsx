@@ -22,6 +22,6 @@ const createStoreWithMiddleware = applyMiddleware(
 )(create)
 const store = createStoreWithMiddleware(reducers);
 if (module.hot) {
-    console.log('热更新加载。。。。')
+    console.log('热更新加载。.。。。')
 }
 export default store;
