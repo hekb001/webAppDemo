@@ -8,9 +8,9 @@ module.exports = {
     bundle: ['react-hot-loader/patch', './src/index']
   },
   output: {
-    path: path.join(__dirname, '/public'),
+    path: path.join(__dirname, '/'),
     filename: '[name].js',
-    publicPath: '/public'
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],

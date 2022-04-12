@@ -1,0 +1,186 @@
+body{
+  .next-dialog-body{
+    color: #3c3c3c;
+  }
+  .next-input.next-disabled input,
+  .next-input.next-disabled textarea{
+    color: #3c3c3c;
+  }
+
+  .next-radio-label,
+  .next-checkbox-label,
+  .next-input.next-input-textarea textarea,
+  .next-menu-item-inner,
+  .next-btn.next-medium{
+    font-size: 14px;
+  }
+}
+
+.react-form-design{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-size: 14px;
+  margin-bottom: 20px;
+  .next-input.next-disabled input,
+  .next-input.next-disabled textarea{
+    color: #3c3c3c;
+  }
+
+  .react-form-design-toolbar{
+    .toolbars{
+      background: #ffffff;
+      padding: 5px 8px;
+      border-top: 1px solid #DCDEE3;
+      border-bottom: 1px solid #DCDEE3;
+      text-align: right;
+      border-left: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+    }
+
+    .control-button{
+      display: inline-block;
+      background: transparent;
+      border: none;
+      outline:none;
+      padding: 4px 5px;
+      cursor: pointer;
+      span{
+        font-size: 12px;
+      }
+
+      &.active [class^="JHDraw-icon"]{
+        color: #00B7EB;
+        font-weight: 600;
+      }
+      &.active span{
+        color: #00B7EB;
+        font-weight: 600;
+      }
+    }
+    .font-size-dropdown{
+      min-width: 50px !important;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .split-line{
+      display: inline-block;
+      height: 20px;
+      border-right: 1px solid #cbcccc;
+      vertical-align: middle;
+      margin: 0 6px;
+    }
+    .next-balloon-tooltip.control-button-tooltip{
+      background-color: rgba(0,0,0,0.8);
+      font-size: 12px;
+      color: #f3f3f3;
+      padding: 4px 8px;
+      border-radius: 3px;
+      &:after{
+        background-color: rgba(0,0,0,0.8);
+      }
+    }
+
+    .next-menu[class*="-dropdown"]{
+      font-size: 12px;
+      p{
+        font-size: 12px;
+      }
+    }
+  }
+  .react-form-design-drawer{
+    flex: 1;
+    //background-color:#ffffff;
+    //background-image: linear-gradient(#f1f1f1 2px,transparent 0),
+    //linear-gradient(90deg, #f1f1f1 2px,transparent 0),
+    //linear-gradient(#f1f1f1 1px,transparent 0),
+    //linear-gradient(90deg,#f1f1f1 1px,transparent 0);
+    //background-size:75px 75px,75px 75px,15px 15px,15px 15px;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+  }
+  .react-form-design-drawer-left{
+    width: 240px;
+    background-color: #ffffff;
+
+    .left-control-list{
+      width: 100%;
+      height: 100%;
+      padding: 5px;
+    }
+    .controls-form{
+      .controls-form-item{
+        font-size: 14px;
+        padding: 0 3px;
+        cursor: move;
+        .controls-form-item-inner{
+          width: 100%;
+          padding: 5px 3px;
+          display: inline-block;
+          background-color: #f1f1f1;
+          margin: 3px 0;
+        }
+        &:hover{
+          background-color: #C7DFE6;
+        }
+      }
+    }
+  }
+  .react-form-design-drawer-center{
+    flex: 1;
+    overflow: auto;
+    background-color: #f1f1f1;
+    &>.field-wrapper,
+    &>.field-field-wrapper{
+      background-color: #f1f1f1;
+      width: 100% !important;
+    }
+  }
+  .react-form-design-drawer-right{
+    width: 350px;
+    background-color: #ffffff;
+    .setting-config{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .react-grid-layout{
+  }
+  .react-grid-item{
+    background-color: #FFFFFF;
+    border: 1px solid #f3f3f3;
+  }
+
+  .next-tabs.next-medium .next-tabs-tab-inner{
+    font-size: 14px;
+    padding: 12px 29px;
+  }
+
+  .next-tabs{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .next-tabs-content{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .next-tabs-tabpane{
+    flex: 1;
+    overflow: auto;
+  }
+  .next-tabs-tabpane.hidden{
+    display: none;
+  }
+}
+
+
+.green{
+  color: green;
+}
+.red{
+  color: red;
+}
+

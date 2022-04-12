@@ -1,0 +1,29 @@
+{
+    "apps": [
+      {
+        "name": "HRM",
+        "script": "./scripts/start.js",
+        "log_date_format": "YYYY-MM-DD HH:mm Z",
+        "out_file": "./logs/pm2-out.log",
+        "error_file": "./logs/pm2-err.log",
+        "pid_file": "./logs/HRM-react.pid",
+        "ignoreWatch": [
+          "[\\/\\\\]\\./",
+          "node_modules"
+        ],
+        "watch": "true",
+        "exec_mode": "fork_mode",
+        "env": {
+          "NODE_ENV": "production",
+          "PORT": 4000,
+          "DEBUG": 0
+        },
+        "env_test": {
+          "NODE_ENV": "development",
+          "PORT": 4000,
+          "ONLINE": 0,
+          "DEBUG": 1
+        }
+      }
+    ]
+  }

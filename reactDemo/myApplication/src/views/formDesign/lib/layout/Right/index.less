@@ -1,0 +1,147 @@
+// 基础配置
+.setting-main{
+  padding-top: 10px;
+}
+.setting-item{
+  display: flex;
+  flex-direction: row;
+  padding: 5px 8px;
+  line-height: 30px;
+}
+.setting-item-label{
+  width: 70px;
+  text-align: right;
+  margin-right: 10px;
+  line-height: 14px;
+  padding-top: 8px;
+}
+.setting-item-content{
+  flex: 1;
+  overflow: hidden;
+  .next-input.next-medium,
+  .next-select{
+    width: 100%;
+  }
+  .next-range{
+    margin-top: 8px;
+  }
+}
+
+// 简要病情拼接配置
+.SplicingTextModal{
+  .SplicingTextModal-title{
+    padding-bottom: 8px;
+  }
+  .single-item{
+    display: inline-block;
+    min-width: 60px;
+    height: 28px;
+    line-height: 28px;
+    vertical-align: middle;
+    border-radius: 3px;
+    text-align: center;
+    padding: 0 8px;
+    margin-right: 8px;
+    margin-bottom: 6px;
+    // color: $color-brand1-6;
+    border: 1px solid #cccccc;
+    &.active{
+      // background-color: $color-brand1-6;
+      color: #ffffff;
+    }
+  }
+  .SplicingTextModal-item-setting{
+    display: flex;
+  }
+  .setting-buttons{
+    width: 80px;
+    margin-top: 18px;
+    padding-left: 15px;
+    .next-btn.next-btn-primary{
+      margin-bottom: 6px;
+    }
+  }
+  .setting-form{
+    flex: 1;
+    padding: 0;
+    padding-top: 6px;
+    border-top: 1px solid #cccccc;
+    margin-top: 6px;
+    overflow: hidden;
+    .next-form{
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .next-form-item{
+      width: 33%;
+    }
+  }
+  .next-select{
+    width: 100%;
+  }
+  .next-select-multiple.next-medium .next-select-values,
+  .next-select-tag.next-medium .next-select-values{
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .next-table{
+    width: 100%;
+  }
+  .next-table th{
+    background-color: #eaeaea;
+    color: #3c3c3c;
+  }
+  .next-table.next-table-small td .next-table-cell-wrapper{
+    padding: 0;
+  }
+  .next-table-cell-edit.next-input{
+    width: 100%;
+  }
+  .next-span-text{
+    padding: 0 8px;
+  }
+}
+
+// 显隐配置
+.hide-rule-item{
+  margin-bottom: 10px;
+  background-color: #f1f1f1;
+  padding: 8px;
+}
+.hide-rule-item-title{
+  line-height: 30px;
+  font-weight: 600;
+}
+.hide-rule-item-single{
+  line-height: 30px;
+}
+
+// 选择项配置
+.option-list-setting{
+  display: block;
+}
+.option-list-title,
+.option-list-value{
+  display: flex;
+  flex-direction: row;
+}
+.option-list-item{
+  flex: 1;
+  line-height: 30px;
+  margin-right: 4px;
+  &:nth-last-of-type(1){
+    margin-right: 0
+  }
+}
+// 颜色选择
+.SketchPickerField{
+  border-width: 4px;
+  border-style: solid;
+  width: 40px;
+  height: 20px;
+  vertical-align: middle;
+  display: inline-block;
+  cursor: pointer;
+}

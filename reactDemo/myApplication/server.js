@@ -7,6 +7,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware')
 const webpackHotMiddleware = require('webpack-hot-middleware')
 console.log(process.env.NODE_ENV,'process.env.NODE_ENV')
 const isProduction = process.env.NODE_ENV == 'production';
+const serverConfig = require('./server/config');
 if(!isProduction){
     const compiler = webpack(config)
     app.use(
@@ -23,9 +24,10 @@ if(!isProduction){
     app.set('views', path.resolve(__dirname, 'dist'))
     app.set('view engine', 'ejs')
 }
-app.get('/',(req,res)=>{
-  res.render('index',{ __CONFIG__: JSON.stringify(process.env.NODE_ENV) })
+app.get('*',(req,res)=>{
+  console.log('11111')
+  res.render('index',{ __CONFIG__: JSON.stringify(serverConfig) })
 })
-app.listen('8081', function() {
+app.listen('4000', function() {
     console.log('服务器启动')
 })
