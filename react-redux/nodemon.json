@@ -1,0 +1,12 @@
+{
+    "verbose": false,
+    "watch": [
+      "server/",
+      "webpack.base.js",
+      "server.js",
+      "webpack.dev.js",
+      "webpack.dll.config",
+      "webpack.prod.js"
+    ]
+  }
+  

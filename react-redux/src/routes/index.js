@@ -1,10 +1,11 @@
 import React from 'react';
-import { HashRouter as Router, Redirect, Switch, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Redirect, Switch, Route } from 'react-router-dom'
 import Home from '../views/Home';
 import HomeRoute from './homeRoute';
 import CompanyInfoRoute from './companyInfoRoute';
 import progressBarRoute from './progressBar';
 import CustomIconRoute from './customIcon';
+import ForwardRoute from './forwardRoute';
 
 import App from '../views/App';
 const Error = () => (
@@ -21,6 +22,7 @@ export default () => (
                     {CompanyInfoRoute()}
                     {progressBarRoute()}
                     {CustomIconRoute()}
+                    {ForwardRoute()}
                 </App>
             </Route>
         </Switch>

@@ -15,7 +15,7 @@
   "license": "ISC",
   "betterScripts": {
     "nodemon-test1": {
-      "command": "node server.js",
+      "command": "nodemon server.js",
       "env": {
         "NODE_ENV": "dev",
         "NODE_TEST": "test1",
@@ -80,6 +80,7 @@
     "less": "^3.0.1",
     "less-loader": "^4.1.0",
     "less-vars-to-js": "^1.2.1",
+    "nodemon": "^2.0.15",
     "open-browser-webpack-plugin": "0.0.5",
     "postcss-flexbugs-fixes": "^3.3.0",
     "postcss-loader": "^2.1.1",

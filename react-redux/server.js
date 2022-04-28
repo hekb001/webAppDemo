@@ -16,7 +16,9 @@ if(processEnv == 'dev'){
     app.use(express.static(path.join(__dirname,'dist')))
 }
 //init server
-
+app.use('*',(req,res)=>{
+    express.static(path.join(__dirname,'public'))
+})
 app.use('/api', routes);
 app.listen(8081, "localhost", function (err) {
     if (err) {

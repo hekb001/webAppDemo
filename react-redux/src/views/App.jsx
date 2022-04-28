@@ -36,6 +36,9 @@ export default function App(props) {
               <Menu.Item key="4">
                 <Link to='/customIcon'>自定义图标</Link>
               </Menu.Item>
+              <Menu.Item key="5">
+                <Link to='/forward'>forward使用</Link>
+              </Menu.Item>
             </Menu>
           </Col>
           <Col span={2}>
