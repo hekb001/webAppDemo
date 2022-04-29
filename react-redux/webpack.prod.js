@@ -27,6 +27,9 @@ const prodConfig = merge(base, {
     performance: {
         hints:false
     },
+    entry: {
+        app:['./src/index.js'],
+    },
     output: {
         filename: '[hash:8].[name].js',
 		chunkFilename: '[hash:8].[name].js',

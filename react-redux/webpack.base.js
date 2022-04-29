@@ -10,43 +10,72 @@ function resolve(dir) {
     return path.join(__dirname, dir);
 }
 console.log(process.env.NODE_ENV,'process.env.NODE_ENV')
-let webpackPlugin = [
-    new CopyWebpackPlugin([{
-        from: "./public",
-        to: "",
-        force: true
-    }]),
-    new HtmlWebpackPlugin({
-        filename: 'index.ejs',//输出的html路径
-        template: './public/index.ejs', //html模板路径
-        minify: {
-            removeComments: true,
-            collapseWhitespace: true,
-            removeRedundantAttributes: true,
-            useShortDoctype: true,
-            removeEmptyAttributes: true,
-            removeStyleLinkTypeAttributes: true,
-            keepClosingSlash: true,
-            minifyCSS: true,
-            minifyJS: true,
-            minifyURLs: true,
-        }
-    }),
-    new webpack.DefinePlugin({
-        'process.env': JSON.stringify(processEnv)
-    }),
-    new webpack.HashedModuleIdsPlugin(), // 修复vendor hash
-]
-//生产环境打包先清理dist
-process.env.NODE_ENV == 'production' && webpackPlugin.unshift(new CleanWebpackPlugin(['dist']));
+let webpackPlugin = []
+// 生产环境打包先清理dist
+if (process.env.NODE_ENV == 'production' && process.env.DEBUG == '0') {
+    webpackPlugin = [
+        new CleanWebpackPlugin(['dist']),
+        new CopyWebpackPlugin([
+            { from: resolve('./public/_dll_react.js'), to: resolve('./dist/') },
+            { from: resolve('./public/manifest.json'), to: resolve('./dist/') },
+        ]),
+        new webpack.DllReferencePlugin({
+            manifest: path.resolve(__dirname, './public', 'manifest.json')
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'index.ejs',//输出的html路径
+            template: path.resolve('./public/index.html'), //html模板路径
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeRedundantAttributes: true,
+                useShortDoctype: true,
+                removeEmptyAttributes: true,
+                removeStyleLinkTypeAttributes: true,
+                keepClosingSlash: true,
+                minifyCSS: true,
+                minifyJS: true,
+                minifyURLs: true,
+            }
+        }),
+        new webpack.DefinePlugin({
+            'process.env': JSON.stringify(processEnv)
+        }),
+        new webpack.HashedModuleIdsPlugin(), // 修复vendor hash
+    ]
+} else {
+    webpackPlugin = [
+        new CopyWebpackPlugin([
+            { from: resolve('./public/_dll_react.js'), to: '' },
+        ]),
+        new webpack.DllReferencePlugin({
+            manifest: path.resolve(__dirname, './public', 'manifest.json')
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'index.ejs',//输出的html路径
+            template: path.resolve('./public/index.ejs'), //html模板路径
+            inject:false,
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeRedundantAttributes: true,
+                useShortDoctype: true,
+                removeEmptyAttributes: true,
+                removeStyleLinkTypeAttributes: true,
+                keepClosingSlash: true,
+                minifyCSS: true,
+                minifyJS: true,
+                minifyURLs: true,
+            }
+        }),
+        new webpack.DefinePlugin({
+            'process.env': JSON.stringify(processEnv)
+        }),
+        new webpack.HashedModuleIdsPlugin(), // 修复vendor hash
+    ]
+}
+
 module.exports = {
-    entry: {
-        app:['webpack-hot-middleware/client?noInfo=true&reload=true','./src/index.js'],
-        vendor: [
-            'react',
-            'react-dom'
-          ]
-    },
     resolve: {
         extensions: [' ', '.js', '.json', '.jsx', '.css', '.less','.json'],
         modules: [resolve( "src"), "node_modules"], //绝对路径;

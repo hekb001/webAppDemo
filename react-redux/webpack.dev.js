@@ -12,6 +12,13 @@ const port = 8081;
 
 module.exports = merge(base, {
   mode: 'development',
+  entry: {
+    app:['webpack-hot-middleware/client?noInfo=true&reload=true','./src/index.js'],
+    vendor: [
+        'react',
+        'react-dom'
+      ]
+  },
   output: {
     filename: 'bundle.js', //
     path: resolve('public'), // 输出的文件地址
@@ -47,9 +54,6 @@ module.exports = merge(base, {
   //   // }
   // },
   plugins: [
-    new webpack.DllReferencePlugin({
-      manifest: path.resolve(__dirname, './public', 'manifest.json')
-    }),
     // new BundleAnalyzerPlugin({ analyzerPort: 9999 }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
