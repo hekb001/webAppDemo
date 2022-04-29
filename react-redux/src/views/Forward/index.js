@@ -2,7 +2,7 @@
  * @Author: kevin.he 
  * @Date: 2022-04-28 15:54:32 
  * @Last Modified by: kevin.he
- * @Last Modified time: 2022-04-28 17:09:04
+ * @Last Modified time: 2022-04-29 14:39:16
  * 测试forward的使用
  */
 import React, { useEffect, useRef, forwardRef } from 'react';
@@ -26,7 +26,7 @@ const forward = (props) => {
     }
     const Inputfun = forwardRef(InputEl);
     return <div>
-        <h2>forwardRef,用来传递ref属性（因为普通的父组件不能向子组件传递ref属性）</h2>
+        <h2>forwardRef,用来传递ref属性（因为普通的父组件不能向子组件传递ref属性...）</h2>
         <h2>useRef适用于hooks函数组件，createRef适用传统的class组件</h2>
         <h2>useRef与forwardRef搭配使用，createRef与React.forwardRef搭配使用</h2>
         <Button onClick={getInputVal}>获取input输入框的值</Button><br />

@@ -13,7 +13,7 @@ const port = 8081;
 module.exports = merge(base, {
   mode: 'development',
   output: {
-    filename: '[name].js', //
+    filename: 'bundle.js', //
     path: resolve('public'), // 输出的文件地址
     publicPath: '/'
   },
@@ -50,9 +50,9 @@ module.exports = merge(base, {
     new webpack.DllReferencePlugin({
       manifest: path.resolve(__dirname, './public', 'manifest.json')
     }),
-    new BundleAnalyzerPlugin({ analyzerPort: 9999 }),
+    // new BundleAnalyzerPlugin({ analyzerPort: 9999 }),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new OpenBrowserPlugin({ url: 'http://localhost:' + port }),
+    // new OpenBrowserPlugin({ url: 'http://localhost:' + port }),
   ],
 });

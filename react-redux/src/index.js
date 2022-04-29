@@ -28,3 +28,6 @@ ReactDOM.render(
     </IntlProvider>,
     document.getElementById('root')
 );
+if (module && module.hot) {
+    module.hot.accept();
+  }

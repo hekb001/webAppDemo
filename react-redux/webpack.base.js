@@ -17,8 +17,8 @@ let webpackPlugin = [
         force: true
     }]),
     new HtmlWebpackPlugin({
-        filename: 'index.html',//输出的html路径
-        template: './public/index.html', //html模板路径
+        filename: 'index.ejs',//输出的html路径
+        template: './public/index.ejs', //html模板路径
         minify: {
             removeComments: true,
             collapseWhitespace: true,
@@ -41,7 +41,7 @@ let webpackPlugin = [
 process.env.NODE_ENV == 'production' && webpackPlugin.unshift(new CleanWebpackPlugin(['dist']));
 module.exports = {
     entry: {
-        app: './src/index.js',
+        app:['webpack-hot-middleware/client?noInfo=true&reload=true','./src/index.js'],
         vendor: [
             'react',
             'react-dom'
