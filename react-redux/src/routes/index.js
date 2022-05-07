@@ -6,6 +6,7 @@ import CompanyInfoRoute from './companyInfoRoute';
 import progressBarRoute from './progressBar';
 import CustomIconRoute from './customIcon';
 import ForwardRoute from './forwardRoute';
+import DragRoute from './dragRoute';
 
 import App from '../views/App';
 const Error = () => (
@@ -23,6 +24,7 @@ export default () => (
                     {progressBarRoute()}
                     {CustomIconRoute()}
                     {ForwardRoute()}
+                    {DragRoute()}
                 </App>
             </Route>
         </Switch>

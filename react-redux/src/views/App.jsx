@@ -39,6 +39,9 @@ export default function App(props) {
               <Menu.Item key="5">
                 <Link to='/forward'>forward使用</Link>
               </Menu.Item>
+              <Menu.Item key="6">
+                    <Link to='/useDrag'>拖拽</Link>
+               </Menu.Item>
             </Menu>
           </Col>
           <Col span={2}>
@@ -84,7 +87,7 @@ export default function App(props) {
               </SubMenu>
             </Menu>
           </Sider>
-          <Content style={{ padding: '0 24px', minHeight: 280 }}>
+          <Content style={{ padding: '0 24px', minHeight: 280,display:'flex' }}>
             {children}
           </Content>
         </Layout>

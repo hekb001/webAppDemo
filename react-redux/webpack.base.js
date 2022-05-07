@@ -48,9 +48,9 @@ if (process.env.NODE_ENV == 'production' && process.env.DEBUG == '0') {
         new CopyWebpackPlugin([
             { from: resolve('./public/_dll_react.js'), to: '' },
         ]),
-        new webpack.DllReferencePlugin({
-            manifest: path.resolve(__dirname, './public', 'manifest.json')
-        }),
+        // new webpack.DllReferencePlugin({
+        //     manifest: path.resolve(__dirname, './public', 'manifest.json')
+        // }),
         new HtmlWebpackPlugin({
             filename: 'index.ejs',//输出的html路径
             template: path.resolve('./public/index.ejs'), //html模板路径

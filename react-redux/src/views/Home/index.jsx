@@ -148,6 +148,12 @@ export default function Home(props) {
                   <Menu.Item key="4">
                     <Link to='/customIcon'>自定义图标</Link>
                   </Menu.Item>
+                  <Menu.Item key="5">
+                    <Link to='/forward'>forward使用</Link>
+                  </Menu.Item>
+                  <Menu.Item key="6">
+                    <Link to='/useDrag'>拖拽</Link>
+                  </Menu.Item>
                 </Menu>
               </Col>
               <Col span={2}>
