@@ -2,7 +2,7 @@
 const port = 8082;
 const base = require('./webpack.base.js');
 const webpack = require('webpack');
-const merge = require('webpack-merge');
+const {merge} = require('webpack-merge');
 const path = require('path');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 function resolve(dir) {
@@ -17,10 +17,9 @@ module.exports = merge(base, {
     },
     // devtool: 'inline-source-map',
     module: {
-    },
-    resolve:{
-        extensions:['.js','.jsx'],
-        modules:[path.resolve(__dirname,'src'),'node_modules']
+        rules:[
+            { enforce: 'pre', test: /\.js$/, use: ['source-map-loader'] },
+        ]
     },
     devServer: {
         contentBase: './dist',
@@ -30,8 +29,6 @@ module.exports = merge(base, {
         inline: true//实时刷新
     },
     plugins: [
-        new webpack.NamedModulesPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-        new OpenBrowserPlugin({ url: 'http://localhost:'+port }),
+        // new OpenBrowserPlugin({ url: 'http://localhost:'+port }),
         ],
 });

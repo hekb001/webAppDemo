@@ -1,8 +1,9 @@
 const webpack = require('webpack');
 const path = require('path');
-const merge = require('webpack-merge');
+const { merge } =  require('webpack-merge');
 const base = require('./webpack.base.js');
 const TerserPlugin = require("terser-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const plugins = new TerserPlugin({
     extractComments: false,//不将注释提取到单独的文件中,去掉.LICENSE.txt文件
     parallel: true,
@@ -31,10 +32,12 @@ const prodConfig = merge(base, {
         publicPath: './'
     },
     mode: 'production',
-    devtool: 'none',
     module: {
         
     },
+    plugins:[
+        new CleanWebpackPlugin(),
+    ]
 });
 prodConfig['optimization'] = Object.assign(prodConfig['optimization'], {
     minimize: true,

@@ -5,14 +5,10 @@ function resolve(dir) {
 }
 module.exports = {
     entry: {
-        app: './src/index.js',
+        app: './src/index.tsx',
         vendor: [
             'react', 'react-dom'
         ]
-    },
-    resolve: {
-        extensions: [' ', '.js', 'jsx', '.json', '.css', '.less', '.json'],
-        modules: [resolve('src'), 'node_modules']
     },
     optimization: {
         splitChunks: {
@@ -25,14 +21,23 @@ module.exports = {
             }
         }
     },
+    resolve: {
+        extensions: ['.js', 'jsx', '.json', '.css', '.less', '.json', '.tsx', '.ts'],
+        modules: [path.resolve(__dirname, 'src'), 'node_modules']
+    },
     module: {
         rules: [
+            {
+                test: /\.(ts|tsx)$/,
+                loader: 'ts-loader',
+                exclude: /node_modules/,
+            },
             {
                 test: /\.(js|jsx)?$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
                 include: [resolve('src')],
-                
+
             },
             { test: /\.txt$/, use: 'raw-loader' },
             {
