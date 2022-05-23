@@ -6,7 +6,7 @@ export class Home extends React.Component {
     };
     render(){
         return (
-            <div>this is my webpackDevServer project</div>
+            <div>this is my webpackDevServer project!</div>
         )
     }
 }

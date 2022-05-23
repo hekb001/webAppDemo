@@ -4,6 +4,7 @@ const merge = require('webpack-merge');
 const base = require('./webpack.base.js');
 const TerserPlugin = require("terser-webpack-plugin");
 const plugins = new TerserPlugin({
+    extractComments: false,//不将注释提取到单独的文件中,去掉.LICENSE.txt文件
     parallel: true,
     cache: true,
     terserOptions: {
